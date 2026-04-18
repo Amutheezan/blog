@@ -409,13 +409,15 @@ html[data-theme="dark"] {
     a:hover { color: #ffffff !important; background: rgba(37, 99, 235, 0.18) !important; }
   }
 
-  /* Sidebar — transparent in dark (blend into background) */
-  @media (min-width: 64em) {
-    .sidebar {
-      background: transparent !important;
-      border-color: transparent !important;
-      box-shadow: none !important;
-    }
+  /* Sidebar — fully reset in dark so #main background shows through cleanly */
+  .sidebar,
+  .sidebar.sticky {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
   }
 
   /* Author URLs popup */
@@ -470,8 +472,10 @@ html[data-theme="dark"] {
   .site-title:hover { color: #ffffff !important; }
 
   /* Author */
-  .author__name { color: #e2e8f0 !important; }
-  .author__bio  { color: #94a3b8 !important; }
+  .author__name  { color: #e2e8f0 !important; }
+  .author__bio   { color: #94a3b8 !important; }
+  .author__location,
+  .author__links .label { color: #94a3b8 !important; }
 
   /* Content text */
   .page__content { color: #cbd5e1; }
