@@ -10,7 +10,7 @@ remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 # Author
 author:
   name: "Amutheezan Sivagnanam"
-  avatar: "/blog/images/profile.jpg"
+  avatar: "https://amutheezan.com/images/DP.png"
   bio: "Postdoctoral Fellow at University of Houston. AI for Transportation Optimization & Reinforcement Learning."
   location: "Houston, TX"
   links:

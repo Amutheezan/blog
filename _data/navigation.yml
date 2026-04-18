@@ -2,6 +2,6 @@ main:
   - title: "Home"
     url: https://amutheezan.com/
   - title: "Categories"
-    url: /blog/categories/
+    url: /categories/
   - title: "Tags"
-    url: /blog/tags/
+    url: /tags/
