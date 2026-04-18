@@ -5,19 +5,26 @@
 @charset "utf-8";
 
 /* ============================================================
-   VARIABLE OVERRIDES — must come before @import
-   These override Minimal Mistakes !default values.
+   VARIABLE OVERRIDES  (must come before @import)
    ============================================================ */
 
-$primary-color        : #2563eb;   /* blue  */
+$primary-color        : #2563eb;
 $link-color           : #2563eb;
 $link-color-hover     : #1d4ed8;
-$link-color-visited   : #6d28d9;   /* purple for visited  */
-$success-color        : #15803d;   /* green */
+$link-color-visited   : #6d28d9;
+$success-color        : #15803d;
 $info-color           : #1e40af;
 $danger-color         : #c50629;
 
-$background-color     : #f8fafc;
+$gray                 : #7a8288;
+$dark-gray            : mix(#000, $gray, 40%);
+$darker-gray          : mix(#000, $gray, 60%);
+$light-gray           : mix(#fff, $gray, 50%);
+$lighter-gray         : mix(#fff, $gray, 90%);
+$blue                 : #2563eb;
+
+$background-color     : #f1f5f9;
+$body-color           : #ffffff;
 $text-color           : #1e293b;
 $border-color         : #e2e8f0;
 
@@ -27,231 +34,287 @@ $masthead-link-color-hover  : rgba(255, 255, 255, 0.80);
 $sans-serif           : "Inter", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 $global-font-family   : $sans-serif;
 $header-font-family   : $sans-serif;
-
 $border-radius        : 6px;
 $global-transition    : all 0.2s ease-in-out;
 
+@import "minimal-mistakes/skins/default";
+@import "minimal-mistakes";
+
 
 /* ============================================================
-   MINIMAL MISTAKES IMPORTS
+   GOOGLE FONTS — Inter loaded in head/custom.html
    ============================================================ */
 
-@import "minimal-mistakes/skins/default"; /* skin */
-@import "minimal-mistakes";               /* main partials */
+
+/* ============================================================
+   BODY & PAGE BACKGROUND
+   ============================================================ */
+
+body {
+  background-color: #f1f5f9;
+  background-image: linear-gradient(to top, rgba(30, 55, 120, 0.22) 0%, transparent 20em);
+  background-attachment: fixed;
+  color: #1e293b;
+  font-family: "Inter", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
 
 
 /* ============================================================
-   MASTHEAD — Blue → Purple gradient
+   #MAIN — Glassmorphism content card
+   ============================================================ */
+
+#main {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.60) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 40px rgba(31, 38, 135, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  animation: page-enter 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.05s;
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   MASTHEAD — Liquid glass (same as portfolio, always dark)
    ============================================================ */
 
 .masthead {
-  background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 100%) !important;
-  border-bottom: none !important;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.18) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 55, 120, 0.45) 0%,
+    rgba(55, 25, 110, 0.35) 100%
+  ) !important;
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20) !important;
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
 }
 
-.greedy-nav {
+.masthead__inner-wrap {
   background: transparent !important;
-
-  a { color: rgba(255, 255, 255, 0.92) !important; }
-  a:hover { color: #ffffff !important; }
-
-  .navicon,
-  .navicon::before,
-  .navicon::after { background: rgba(255, 255, 255, 0.88) !important; }
-
-  .hidden-links {
-    background: #1e3a8a !important;
-    border-color: rgba(255, 255, 255, 0.15) !important;
-    a { color: rgba(255, 255, 255, 0.90) !important; }
-    a:hover { color: #ffffff !important; }
-  }
+  padding: 0.75em 1em;
+  font-family: "Inter", -apple-system, sans-serif;
 }
 
+/* Site title */
 .site-title        { color: #ffffff !important; font-weight: 700 !important; }
 .site-title:visited { color: rgba(255, 255, 255, 0.85) !important; }
 .site-title:hover  { color: #ffffff !important; text-decoration: none !important; }
 
-/* Greedy nav hamburger button */
+
+/* ============================================================
+   GREEDY NAV — Pill-shaped links (from portfolio _navigation.scss)
+   ============================================================ */
+
+.greedy-nav {
+  background: transparent !important;
+}
+
+.greedy-nav a {
+  color: rgba(255, 255, 255, 0.90) !important;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.greedy-nav a:hover { color: #ffffff !important; }
+
+/* Pill buttons for visible links — identical to portfolio */
+.greedy-nav .visible-links li { display: table-cell; vertical-align: middle; }
+
+.greedy-nav .visible-links a {
+  position: relative;
+  padding: 0.35rem 1rem !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: none !important;
+  box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.40) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: rgba(255, 255, 255, 0.90) !important;
+  letter-spacing: 0.015em;
+  font-weight: 500;
+  transition: all 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.greedy-nav .visible-links a:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.55) !important;
+  color: #ffffff !important;
+}
+
+/* Hamburger toggle */
 .greedy-nav__toggle {
   color: rgba(255, 255, 255, 0.90) !important;
-  &:hover { color: #ffffff !important; }
+}
+.navicon,
+.navicon::before,
+.navicon::after { background: rgba(255, 255, 255, 0.88) !important; }
+
+/* Hidden-links dropdown */
+.greedy-nav .hidden-links {
+  background: rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+.greedy-nav .hidden-links a {
+  color: #1e293b !important;
+  &:hover {
+    color: #2563eb !important;
+    background: rgba(37, 99, 235, 0.08) !important;
+    border-radius: 8px;
+  }
 }
 
 
 /* ============================================================
-   FOOTER — matches masthead gradient
+   SIDEBAR — Glassmorphism card (light) / transparent (dark)
+   ============================================================ */
+
+@media (min-width: 64em) {
+  .sidebar {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    border-radius: 18px;
+    padding: 1rem 0.75rem;
+    box-shadow:
+      0 4px 24px rgba(31, 38, 135, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+}
+
+/* Author avatar ring */
+.author__avatar img {
+  max-width: 175px;
+  border-radius: 50% !important;
+  box-shadow:
+    0 6px 24px rgba(31, 38, 135, 0.20),
+    0 0 0 3px rgba(255, 255, 255, 0.70),
+    0 0 0 5px rgba(37, 99, 235, 0.25) !important;
+  border: 2px solid rgba(255, 255, 255, 0.70);
+}
+
+/* Sidebar text */
+.author__name  { color: #1e293b; font-family: "Inter", -apple-system, sans-serif; }
+.author__bio   { color: #475569; }
+.author__urls a { color: #1d4ed8; font-size: 0.85rem; }
+.author__urls a:hover { text-decoration: underline; }
+.author__urls .fas,
+.author__urls .fab,
+.author__urls .far { color: #2563eb; }
+
+
+/* ============================================================
+   FOOTER — Dark gradient glass (same as portfolio)
    ============================================================ */
 
 .page__footer {
-  background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 100%) !important;
-  color: rgba(255, 255, 255, 0.85) !important;
-  border-top: none !important;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 55, 120, 0.60) 0%,
+    rgba(55, 25, 110, 0.50) 100%
+  ) !important;
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.88) !important;
   margin-top: 3rem;
-
-  footer { color: rgba(255, 255, 255, 0.85) !important; }
-  a { color: rgba(255, 255, 255, 0.85) !important; }
-  a:hover { color: #ffffff !important; }
 }
 
-.page__footer-copyright { color: rgba(255, 255, 255, 0.70) !important; }
+.page__footer footer,
+.page__footer a,
+.page__footer .fas,
+.page__footer .fab,
+.page__footer .far {
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: transparent !important;
+}
+.page__footer a:hover { text-decoration: underline; color: #ffffff !important; }
+.page__footer-copyright { color: rgba(255, 255, 255, 0.60) !important; font-size: 0.75rem; }
 
 
 /* ============================================================
-   SIDEBAR
+   CONTENT LINKS & TYPOGRAPHY
    ============================================================ */
 
-.sidebar {
-  .author__name    { color: #1e293b; }
-  .author__bio     { color: #64748b; }
-  .author__urls a  { color: #2563eb; }
-  .author__urls a:hover { color: #1d4ed8; }
+.page__content a { color: #2563eb; }
+.page__content a:hover { color: #1d4ed8; }
+.page__content a:visited { color: #6d28d9; }
+
+.page__content h2 { border-bottom-color: #e2e8f0; }
+
+blockquote {
+  background: rgba(37, 99, 235, 0.05);
+  backdrop-filter: blur(8px);
+  border-left: 3px solid rgba(37, 99, 235, 0.60);
+  border-radius: 0 10px 10px 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.60);
+}
+
+/* Archive / post list */
+.archive__item-title a { color: #1e293b; }
+.archive__item-title a:hover { color: #2563eb; }
+.archive__item-excerpt { color: #475569; }
+
+/* Pagination */
+.pagination li a {
+  background: rgba(26, 47, 94, 0.55);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.90);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  &:hover { background: rgba(37, 99, 235, 0.70); color: #fff; }
+  &.current { background: rgba(37, 99, 235, 0.85); color: #fff; }
+}
+.pagination--pager {
+  background: rgba(26, 47, 94, 0.55);
+  backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.90);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  &:hover { background: rgba(37, 99, 235, 0.70); color: #fff; }
 }
 
 
 /* ============================================================
-   CONTENT LINKS
+   INTERACTIONS — lift / press effects (from portfolio)
    ============================================================ */
 
-.page__content a {
-  color: #2563eb;
-  &:hover { color: #1d4ed8; }
+.archive__item {
+  border-radius: 10px;
+  transition: transform 0.22s cubic-bezier(0.34, 1.45, 0.64, 1), box-shadow 0.22s ease;
+  &:hover { transform: translateY(-3px) scale(1.005); }
+  &:active { transform: translateY(-1px); }
 }
 
-.archive__item-title a {
-  color: #1e293b;
-  &:hover { color: #2563eb; }
-}
-
-
-/* ============================================================
-   DARK MODE — html[data-theme="dark"]
-   Applied by JS before first paint; toggled by floating button.
-   ============================================================ */
-
-html[data-theme="dark"] {
-
-  /* Page background */
-  body {
-    background-color: #0f172a;
-    color: #cbd5e1;
-  }
-
-  /* Main content area */
-  .page__content {
-    color: #cbd5e1;
-
-    h1, h2, h3, h4, h5, h6 { color: #e2e8f0; }
-    p { color: #cbd5e1; }
-
-    a { color: #60a5fa; }
-    a:hover { color: #93c5fd; }
-
-    blockquote {
-      background: rgba(37, 99, 235, 0.10);
-      border-left-color: rgba(96, 165, 250, 0.60);
-      color: #cbd5e1;
-    }
-
-    code {
-      background: rgba(30, 55, 110, 0.55);
-      color: #bfdbfe;
-    }
-
-    pre code { background: transparent; }
-  }
-
-  pre.highlight, div.highlight {
-    background: #0d1526 !important;
-  }
-
-  h1, h2, h3, h4, h5, h6 { color: #e2e8f0; }
-
-  a { color: #60a5fa; }
-  a:hover { color: #93c5fd; }
-  a:visited { color: #818cf8; }
-
-  /* Keep masthead links white */
-  .masthead a,
-  .greedy-nav a { color: rgba(255, 255, 255, 0.92) !important; }
-
-  /* Deeper masthead for dark mode */
-  .masthead {
-    background: linear-gradient(135deg, rgba(10, 20, 60, 0.96) 0%, rgba(30, 8, 80, 0.94) 100%) !important;
-    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.45) !important;
-  }
-
-  /* Footer */
-  .page__footer {
-    background: linear-gradient(135deg, rgba(10, 20, 60, 0.98) 0%, rgba(30, 8, 80, 0.96) 100%) !important;
-    &, footer, a { color: rgba(255, 255, 255, 0.80) !important; }
-    .page__footer-copyright { color: rgba(255, 255, 255, 0.55) !important; }
-  }
-
-  /* Sidebar */
-  .sidebar {
-    .author__name    { color: #e2e8f0 !important; }
-    .author__bio     { color: #94a3b8 !important; }
-    .author__urls a  { color: #60a5fa !important; }
-    .author__urls a:hover { color: #93c5fd !important; }
-    .author__urls-wrapper {
-      background: rgba(15, 23, 42, 0.95) !important;
-      border-color: rgba(255, 255, 255, 0.12) !important;
-    }
-  }
-
-  /* Archive / post list */
-  .archive__item-title a {
-    color: #93c5fd;
-    &:hover { color: #bfdbfe; }
-  }
-  .archive__item-excerpt { color: #94a3b8; }
-  .list__item .page__meta { color: #64748b; }
-
-  /* Pagination */
-  .pagination a {
-    color: #60a5fa;
-    border-color: rgba(96, 165, 250, 0.35);
-    &:hover { background: rgba(96, 165, 250, 0.10); }
-  }
-  .pagination--pager:hover { background: rgba(37, 99, 235, 0.12); }
-
-  /* Taxonomies */
-  .page__taxonomy-item {
-    border-color: rgba(255, 255, 255, 0.15);
-    color: #94a3b8;
-    &:hover { color: #60a5fa; }
-  }
-
-  /* Meta / read-time */
-  .page__meta { color: #64748b; }
-
-  /* Table of contents */
-  .toc__menu a { color: #94a3b8; }
-  .toc__menu a:hover, .toc__menu .active > a { color: #60a5fa; }
-
-  /* Tables */
-  table { border-color: rgba(96, 165, 250, 0.22); }
-  thead {
-    background-color: rgba(30, 58, 138, 0.40);
-    color: #e2e8f0;
-    border-bottom-color: rgba(96, 165, 250, 0.30);
-  }
-  th { border-right-color: rgba(96, 165, 250, 0.20); color: #e2e8f0; }
-  td { border-bottom-color: rgba(96, 165, 250, 0.15); border-right-color: rgba(96, 165, 250, 0.15); color: #cbd5e1; }
-
-  hr { border-top-color: rgba(255, 255, 255, 0.12); }
-  .page__content h2 { border-bottom-color: rgba(255, 255, 255, 0.12); }
-
-  /* Notices */
-  .notice { background: rgba(30, 55, 110, 0.35) !important; }
+.author__avatar img {
+  transition: transform 0.30s cubic-bezier(0.34, 1.45, 0.64, 1), box-shadow 0.30s ease;
+  &:hover { transform: scale(1.06) translateY(-2px); }
 }
 
 
 /* ============================================================
-   DARK MODE FLOATING TOGGLE — pill button fixed bottom-right
+   DARK MODE TOGGLE — floating pill (bottom-right)
    ============================================================ */
 
 #dark-toggle {
@@ -265,46 +328,224 @@ html[data-theme="dark"] {
   padding: 0.55rem 1.1rem;
   border: none;
   border-radius: 2rem;
-  background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 100%);
+  background: linear-gradient(135deg, rgba(30, 55, 120, 0.72) 0%, rgba(55, 25, 110, 0.65) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: #ffffff;
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22), 0 1px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.22);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
   font-family: "Inter", -apple-system, sans-serif;
-  letter-spacing: 0.01em;
   -webkit-user-select: none;
   user-select: none;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.28);
   }
-
-  &:active {
-    transform: translateY(0);
-    transition-duration: 0.06s;
-  }
-
+  &:active { transform: translateY(0); transition-duration: 0.06s; }
   &:focus { outline: none; }
-  &:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.55);
-    outline-offset: 2px;
-  }
+  &:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.55); outline-offset: 2px; }
 
-  /* Moon shows in light mode (click to go dark) */
   .icon-sun  { display: none; }
   .icon-moon { display: inline; }
 }
 
 html[data-theme="dark"] #dark-toggle {
-  background: linear-gradient(135deg, rgba(30, 58, 138, 0.90) 0%, rgba(76, 17, 160, 0.85) 100%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
-
-  /* Sun shows in dark mode (click to go light) */
   .icon-sun  { display: inline; }
   .icon-moon { display: none; }
+}
+
+
+/* ============================================================
+   DARK MODE — html[data-theme="dark"]
+   Mirrors portfolio _dark-mode.scss exactly
+   ============================================================ */
+
+html[data-theme="dark"] {
+
+  body {
+    background-color: #0f172a;
+    background-image: linear-gradient(to top, rgba(30, 55, 120, 0.35) 0%, transparent 20em);
+    color: #cbd5e1;
+  }
+
+  /* Dark glass main card */
+  #main {
+    background: rgba(15, 28, 65, 0.78) !important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.45),
+      0 2px 8px rgba(0, 0, 0, 0.30),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  }
+
+  /* Deeper masthead */
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(10, 18, 55, 0.72) 0%,
+      rgba(28, 8, 70, 0.65) 100%
+    ) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow:
+      0 2px 16px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
+  }
+
+  /* Keep nav links white */
+  .greedy-nav a,
+  .greedy-nav .visible-links a { color: rgba(255, 255, 255, 0.90) !important; }
+  .greedy-nav a:hover,
+  .greedy-nav .visible-links a:hover { color: #ffffff !important; }
+
+  /* Hidden-links dropdown dark */
+  .greedy-nav .hidden-links {
+    background: rgba(15, 28, 65, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    a { color: rgba(255, 255, 255, 0.88) !important; }
+    a:hover { color: #ffffff !important; background: rgba(37, 99, 235, 0.18) !important; }
+  }
+
+  /* Sidebar — transparent in dark (blend into background) */
+  @media (min-width: 64em) {
+    .sidebar {
+      background: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+  }
+
+  /* Author URLs popup */
+  .author__urls-wrapper {
+    background: rgba(15, 28, 65, 0.92) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    @media (min-width: 64em) { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+  }
+  .author__urls a { color: #93c5fd !important; }
+  .author__urls a:hover { color: #bfdbfe !important; }
+  .author__urls .fas,
+  .author__urls .fab,
+  .author__urls .far { color: #60a5fa !important; }
+
+  /* Avatar ring — lighter in dark */
+  .author__avatar img {
+    box-shadow:
+      0 6px 24px rgba(0, 0, 0, 0.40),
+      0 0 0 3px rgba(255, 255, 255, 0.25),
+      0 0 0 5px rgba(37, 99, 235, 0.35) !important;
+  }
+
+  /* Footer */
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(10, 18, 55, 0.85) 0%,
+      rgba(28, 8, 70, 0.75) 100%
+    ) !important;
+    border-top-color: rgba(255, 255, 255, 0.10) !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+  }
+  .page__footer footer,
+  .page__footer a,
+  .page__footer .fas,
+  .page__footer .fab,
+  .page__footer .far { color: rgba(255, 255, 255, 0.80) !important; }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 { color: #e2e8f0; }
+  .page__content h2 { border-bottom-color: rgba(255, 255, 255, 0.12); }
+  hr { border-top-color: rgba(255, 255, 255, 0.12); }
+
+  /* Links */
+  a { color: #60a5fa; }
+  a:hover { color: #93c5fd; }
+  a:visited { color: #818cf8; }
+
+  /* Keep site-title white */
+  .site-title,
+  .site-title:visited,
+  .site-title:hover { color: #ffffff !important; }
+
+  /* Author */
+  .author__name { color: #e2e8f0 !important; }
+  .author__bio  { color: #94a3b8 !important; }
+
+  /* Content text */
+  .page__content { color: #cbd5e1; }
+  .page__content p { color: #cbd5e1; }
+  .page__content h1, .page__content h2,
+  .page__content h3, .page__content h4 { color: #e2e8f0; }
+  .page__content a { color: #60a5fa; }
+  .page__content a:hover { color: #93c5fd; }
+
+  /* Blockquote */
+  blockquote {
+    background: rgba(37, 99, 235, 0.10);
+    border-left-color: rgba(96, 165, 250, 0.65);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    color: #cbd5e1;
+  }
+
+  /* Inline code */
+  p > code, a > code, li > code, td > code {
+    background: rgba(30, 55, 110, 0.55);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #bfdbfe;
+  }
+  pre.highlight, div.highlight { background: #0d1526 !important; }
+
+  /* Archive / post list */
+  .archive__item {
+    background: rgba(20, 35, 85, 0.60);
+    border-color: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    &:hover {
+      background: rgba(25, 45, 105, 0.78);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+  }
+  .archive__item-title a { color: #93c5fd !important; }
+  .archive__item-title a:hover { color: #bfdbfe !important; }
+  .archive__item-excerpt { color: #94a3b8 !important; }
+  .archive__subtitle { color: #94a3b8; border-bottom-color: rgba(255, 255, 255, 0.12); }
+
+  /* Meta / read-time */
+  .page__meta { color: #64748b; }
+
+  /* Tables */
+  table { border-color: rgba(96, 165, 250, 0.30); }
+  thead {
+    background-color: rgba(30, 58, 138, 0.45);
+    border-bottom-color: rgba(96, 165, 250, 0.30);
+    color: #e2e8f0;
+  }
+  th { border-right-color: rgba(96, 165, 250, 0.25); color: #e2e8f0; }
+  td { border-bottom-color: rgba(96, 165, 250, 0.20); border-right-color: rgba(96, 165, 250, 0.20); color: #cbd5e1; }
+
+  /* Pagination */
+  .pagination li a {
+    background: rgba(15, 28, 65, 0.70);
+    color: #60a5fa;
+    border-color: rgba(96, 165, 250, 0.35);
+    &:hover { background: rgba(37, 99, 235, 0.25); }
+    &.current { background: rgba(37, 99, 235, 0.50); color: #fff; }
+  }
+  .pagination--pager {
+    background: rgba(15, 28, 65, 0.70);
+    color: #60a5fa;
+    border-color: rgba(96, 165, 250, 0.35);
+    &:hover { background: rgba(37, 99, 235, 0.25); color: #93c5fd; }
+  }
+
+  /* Taxonomy */
+  .page__taxonomy-item { border-color: rgba(255, 255, 255, 0.15); color: #94a3b8; }
+
+  /* TOC */
+  .toc__menu a { color: #94a3b8; }
+  .toc__menu a:hover { color: #60a5fa; }
 }
 
 
@@ -318,7 +559,6 @@ html[data-theme="dark"] #dark-toggle {
   border-radius: 16px;
   padding: 2.75rem 2.25rem;
   margin-bottom: 2.5rem;
-  /* Ensure it fills the full content column width */
   box-sizing: border-box;
   width: 100%;
   background: linear-gradient(
@@ -330,9 +570,8 @@ html[data-theme="dark"] #dark-toggle {
   border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow: 0 4px 24px rgba(37, 99, 235, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.80);
 
-  /* Desktop: taller, vertically centred content */
   @media (min-width: 64em) {
-    min-height: 320px;
+    min-height: 300px;
     padding: 3.5rem 3rem;
     display: flex;
     flex-direction: column;
@@ -340,7 +579,6 @@ html[data-theme="dark"] #dark-toggle {
   }
 }
 
-/* Decorative purple glow — top-right */
 .home-hero::before {
   content: '';
   position: absolute;
@@ -351,7 +589,6 @@ html[data-theme="dark"] #dark-toggle {
   pointer-events: none;
 }
 
-/* Decorative green glow — bottom-left */
 .home-hero::after {
   content: '';
   position: absolute;
@@ -404,7 +641,6 @@ html[data-theme="dark"] #dark-toggle {
   z-index: 1;
 }
 
-/* CTA buttons */
 .home-btn {
   display: inline-flex;
   align-items: center;
@@ -414,12 +650,11 @@ html[data-theme="dark"] #dark-toggle {
   font-size: 0.90rem;
   font-weight: 600;
   text-decoration: none !important;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-  letter-spacing: 0.01em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
   cursor: pointer;
-
-  &:hover { transform: translateY(-2px); }
-  &:active { transform: translateY(0); transition-duration: 0.07s; }
+  &:hover { transform: translateY(-2px); text-decoration: none !important; }
+  &:active { transform: translateY(0); }
+  &:visited { text-decoration: none !important; }
 }
 
 .home-btn--primary {
@@ -427,7 +662,7 @@ html[data-theme="dark"] #dark-toggle {
   color: #ffffff !important;
   border: none;
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.30);
-  &:hover { box-shadow: 0 6px 22px rgba(37, 99, 235, 0.42); }
+  &:hover { box-shadow: 0 6px 22px rgba(37, 99, 235, 0.42); color: #ffffff !important; }
   &:visited { color: #ffffff !important; }
 }
 
@@ -435,15 +670,11 @@ html[data-theme="dark"] #dark-toggle {
   background: transparent;
   color: #2563eb !important;
   border: 1.5px solid rgba(37, 99, 235, 0.40);
-  &:hover { background: rgba(37, 99, 235, 0.06); }
+  &:hover { background: rgba(37, 99, 235, 0.06); color: #1d4ed8 !important; }
   &:visited { color: #2563eb !important; }
 }
 
-
-/* ============================================================
-   RESEARCH INTEREST CHIPS
-   ============================================================ */
-
+/* Research interest chips */
 .home-chips {
   display: flex;
   flex-wrap: wrap;
@@ -463,36 +694,13 @@ html[data-theme="dark"] #dark-toggle {
   font-weight: 500;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
   cursor: default;
-
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
-  }
-
-  &--blue {
-    background: rgba(37, 99, 235, 0.09);
-    border: 1px solid rgba(37, 99, 235, 0.22);
-    color: #1d4ed8;
-  }
-
-  &--purple {
-    background: rgba(124, 58, 237, 0.09);
-    border: 1px solid rgba(124, 58, 237, 0.22);
-    color: #6d28d9;
-  }
-
-  &--green {
-    background: rgba(22, 163, 74, 0.09);
-    border: 1px solid rgba(22, 163, 74, 0.22);
-    color: #15803d;
-  }
+  &:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10); }
+  &--blue   { background: rgba(37, 99, 235, 0.09); border: 1px solid rgba(37, 99, 235, 0.22); color: #1d4ed8; }
+  &--purple { background: rgba(124, 58, 237, 0.09); border: 1px solid rgba(124, 58, 237, 0.22); color: #6d28d9; }
+  &--green  { background: rgba(22, 163, 74, 0.09); border: 1px solid rgba(22, 163, 74, 0.22); color: #15803d; }
 }
 
-
-/* ============================================================
-   SECTION HEADING with gradient rule
-   ============================================================ */
-
+/* Section heading with gradient border */
 .home-section-title {
   font-size: 1.05rem;
   font-weight: 700;
@@ -501,9 +709,6 @@ html[data-theme="dark"] #dark-toggle {
   padding-bottom: 0.6rem;
   border-bottom: 2px solid transparent;
   border-image: linear-gradient(to right, #2563eb, #7c3aed, #15803d) 1;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 
@@ -522,7 +727,6 @@ html[data-theme="dark"] {
     );
     border-color: rgba(255, 255, 255, 0.10);
     box-shadow: 0 4px 28px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-
   }
 
   .home-hero__badge {
@@ -543,7 +747,7 @@ html[data-theme="dark"] {
   .home-btn--outline {
     color: #93c5fd !important;
     border-color: rgba(96, 165, 250, 0.38);
-    &:hover { background: rgba(96, 165, 250, 0.10); }
+    &:hover { background: rgba(96, 165, 250, 0.10); color: #bfdbfe !important; }
   }
 
   .home-chip {
