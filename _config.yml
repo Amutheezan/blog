@@ -1,0 +1,62 @@
+title: "Amutheezan's Blog"
+description: "Technical writing on AI, systems, and engineering by Amutheezan Sivagnanam."
+url: "https://amutheezan.com"
+baseurl: "/blog"
+
+repository: "Amutheezan/blog"
+
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+
+# Author
+author:
+  name: "Amutheezan Sivagnanam"
+  avatar: "/blog/images/profile.jpg"
+  bio: "Postdoctoral Fellow at University of Houston. AI for Transportation Optimization & Reinforcement Learning."
+  location: "Houston, TX"
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://amutheezan.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/Amutheezan"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/amutheezan"
+
+# Plugins
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Pagination
+paginate: 10
+paginate_path: /page:num/
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+include:
+  - _pages
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      share: false
+      related: true
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true

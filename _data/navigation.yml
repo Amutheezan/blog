@@ -1,0 +1,7 @@
+main:
+  - title: "Home"
+    url: https://amutheezan.com/
+  - title: "Categories"
+    url: /blog/categories/
+  - title: "Tags"
+    url: /blog/tags/
