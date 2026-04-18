@@ -1,0 +1,51 @@
+<!-- Minimal Mistakes core JavaScript -->
+<script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+
+<!-- Dark mode floating toggle button (rendered into the DOM, styled via main.scss) -->
+<button id="dark-toggle" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
+  <i class="fas fa-sun  icon-sun"  aria-hidden="true"></i>
+  <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+  <span class="dark-toggle__label"></span>
+</button>
+
+<script>
+/* jshint esversion: 6 */
+(function () {
+  'use strict';
+
+  var btn = document.getElementById('dark-toggle');
+  if (!btn) { return; }
+
+  var label = btn.querySelector('.dark-toggle__label');
+
+  /* Apply a theme and persist it */
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (label) { label.textContent = theme === 'dark' ? 'Light' : 'Dark'; }
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+  }
+
+  /* Sync the button label to whatever theme is currently active */
+  var current = document.documentElement.getAttribute('data-theme') || 'light';
+  if (label) { label.textContent = current === 'dark' ? 'Light' : 'Dark'; }
+
+  /* Toggle on click */
+  btn.addEventListener('click', function () {
+    var active = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(active === 'dark' ? 'light' : 'dark');
+  });
+
+  /* React to OS-level preference changes (only when the user has not manually
+     overridden the theme, i.e. nothing saved in localStorage). */
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (err) {}
+      if (!saved) { applyTheme(e.matches ? 'dark' : 'light'); }
+    });
+  }
+}());
+</script>
+
+{% include analytics.html %}
+{% include /comments-providers/scripts.html %}
