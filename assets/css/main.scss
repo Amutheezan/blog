@@ -615,7 +615,7 @@ html[data-theme="dark"] {
 }
 
 .home-hero__title {
-  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
   font-weight: 800;
   line-height: 1.20;
   margin: 0 0 0.65rem;
@@ -736,6 +736,7 @@ html[data-theme="dark"] {
   }
 
   .home-hero__title {
+    font-size: clamp(1.05rem, 1.6vw, 1.4rem);
     background: linear-gradient(130deg, #60a5fa 0%, #c084fc 55%, #4ade80 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
