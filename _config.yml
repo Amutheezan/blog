@@ -30,6 +30,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-paginate
+  - jekyll-include-cache
 
 # Pagination
 paginate: 10
