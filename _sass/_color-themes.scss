@@ -1,0 +1,608 @@
+/* ==========================================================================
+   COLOR THEMES — Default (Blue) · Green · Purple
+   Applied via html[data-color-theme="green|purple"].
+   The default blue theme is the base stylesheet — no overrides required.
+   Dark-mode combinations are handled with compound selectors.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   COLOR THEME TOGGLE BUTTON
+   A pill-shaped button with three coloured swatch dots.
+   The active swatch is larger and fully opaque; the others are smaller/dimmer.
+   -------------------------------------------------------------------------- */
+
+.color-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 0.6rem;
+  height: 2rem;
+  min-width: 2.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.15s ease;
+  vertical-align: middle;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: scale(1.06);
+
+    .color-theme-swatch { opacity: 1; transform: scale(1.15); }
+  }
+
+  &:active { transform: scale(0.95); }
+
+  &:focus { outline: none; }
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.55);
+    outline-offset: 2px;
+  }
+}
+
+.color-theme-swatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+  opacity: 0.45;
+  transform: scale(0.85);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+  &--default { background: #60a5fa; }   /* blue-400  */
+  &--green   { background: #4ade80; }   /* green-400 */
+  &--purple  { background: #c084fc; }   /* purple-400 */
+}
+
+/* Active swatch — highlighted */
+html:not([data-color-theme]),
+html[data-color-theme="default"] {
+  .color-theme-swatch--default {
+    opacity: 1;
+    transform: scale(1.28);
+    box-shadow: 0 0 6px rgba(96, 165, 250, 0.7);
+  }
+}
+
+html[data-color-theme="green"] {
+  .color-theme-swatch--green {
+    opacity: 1;
+    transform: scale(1.28);
+    box-shadow: 0 0 6px rgba(74, 222, 128, 0.7);
+  }
+}
+
+html[data-color-theme="purple"] {
+  .color-theme-swatch--purple {
+    opacity: 1;
+    transform: scale(1.28);
+    box-shadow: 0 0 6px rgba(192, 132, 252, 0.7);
+  }
+}
+
+
+/* ==========================================================================
+   GREEN THEME — Light mode
+   ========================================================================== */
+
+html[data-color-theme="green"] {
+
+  body {
+    background-color: #f0fdf4;
+    background-image: linear-gradient(to top, rgba(21, 128, 61, 0.28) 0%, transparent 20em);
+  }
+
+  #main {
+    background: rgba(240, 253, 244, 0.88);
+    border-color: rgba(34, 197, 94, 0.18);
+    box-shadow:
+      0 8px 40px rgba(16, 120, 60, 0.09),
+      0 2px 8px rgba(16, 120, 60, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  }
+
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(21, 128, 61, 0.58) 0%,
+      rgba(5,  90, 45, 0.48) 100%
+    );
+    border-bottom-color: rgba(255, 255, 255, 0.22);
+  }
+
+  /* Hamburger dropdown button — match green theme */
+  .greedy-nav__toggle-btn {
+    background: rgba(21, 128, 61, 0.80);
+  }
+
+  /* Sidebar card — green-tinted shadow */
+  .sidebar {
+    @include breakpoint($large) {
+      box-shadow:
+        0 4px 24px rgba(16, 120, 60, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      border-color: rgba(34, 197, 94, 0.25);
+    }
+  }
+
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(21, 128, 61, 0.70) 0%,
+      rgba(5,  90, 45, 0.58) 100%
+    );
+    border-top-color: rgba(255, 255, 255, 0.14);
+
+    &::before {
+      background: linear-gradient(to bottom, transparent 0%, rgba(21, 128, 61, 0.36) 100%);
+    }
+  }
+
+  /* Links */
+  a {
+    color: #15803d;
+    &:hover   { color: #166534; }
+    &:visited { color: #14532d; }
+  }
+
+  /* Keep masthead / footer links white */
+  .masthead__inner-wrap a,
+  .greedy-nav a {
+    color: rgba(255, 255, 255, 0.92);
+    &:hover { color: #ffffff; }
+  }
+  .masthead__menu-item--lg a,
+  .masthead__menu-item--lg a:visited,
+  .masthead__menu-item--lg a:hover { color: #ffffff; }
+
+  /* Headings accent */
+  h1, h2, h3 { color: #14532d; }
+
+  /* Blockquote */
+  blockquote {
+    background: rgba(22, 163, 74, 0.06);
+    border-left-color: rgba(22, 163, 74, 0.70);
+  }
+
+  /* Archive cards */
+  .archive__item-title a {
+    color: #15803d;
+    &:hover { color: #14532d; }
+  }
+  .archive__item:hover {
+    border-color: rgba(22, 163, 74, 0.32);
+    box-shadow:
+      0 8px 30px rgba(22, 163, 74, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  }
+
+  /* Section divider in content */
+  .page__content h2 {
+    border-bottom-color: rgba(22, 163, 74, 0.28);
+  }
+
+  /* Pagination */
+  .pagination a {
+    color: #15803d;
+    border-color: rgba(22, 163, 74, 0.38);
+    &:hover { background: rgba(22, 163, 74, 0.09); }
+  }
+
+  /* Sidebar author links */
+  .author__urls a {
+    color: #15803d;
+    &:hover { color: #14532d; }
+  }
+  .author__urls .fas,
+  .author__urls .fab,
+  .author__urls .far { color: #16a34a; }
+
+  /* Inline code */
+  p > code, a > code, li > code, figcaption > code, td > code {
+    background: rgba(22, 163, 74, 0.08);
+    border-color: rgba(22, 163, 74, 0.22);
+    color: #15803d;
+  }
+
+  /* Tables */
+  thead {
+    background-color: rgba(22, 163, 74, 0.11);
+    border-bottom-color: rgba(22, 163, 74, 0.28);
+  }
+  table  { border-color: rgba(22, 163, 74, 0.22); }
+  th     { border-right-color: rgba(22, 163, 74, 0.18); }
+  td     { border-bottom-color: rgba(22, 163, 74, 0.14); border-right-color: rgba(22, 163, 74, 0.14); }
+
+  /* Archive subtitle */
+  .archive__subtitle { border-bottom-color: rgba(22, 163, 74, 0.22); }
+}
+
+
+/* ==========================================================================
+   GREEN THEME — Dark mode  (html[data-theme="dark"][data-color-theme="green"])
+   ========================================================================== */
+
+html[data-theme="dark"][data-color-theme="green"] {
+
+  body {
+    background-color: #052e16 !important;
+    background-image: linear-gradient(to top, rgba(6, 78, 36, 0.55) 0%, transparent 20em) !important;
+    color: #bbf7d0;
+  }
+
+  .greedy-nav__toggle-btn { background: rgba(6, 78, 36, 0.90); }
+
+  #main {
+    background: rgba(5, 46, 22, 0.80);
+    border-color: rgba(74, 222, 128, 0.13);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.50),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .sidebar {
+    @include breakpoint($large) {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(6,  78, 36, 0.74) 0%,
+      rgba(5,  46, 22, 0.66) 100%
+    );
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(6,  78, 36, 0.88) 0%,
+      rgba(5,  46, 22, 0.78) 100%
+    );
+    border-top-color: rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.82);
+
+    &::before {
+      background: linear-gradient(to bottom, transparent 0%, rgba(6, 78, 36, 0.50) 100%);
+    }
+  }
+
+  a {
+    color: #4ade80;
+    &:hover   { color: #86efac; }
+    &:visited { color: #86efac; }
+  }
+
+  .masthead__menu-item--lg a,
+  .masthead__menu-item--lg a:visited,
+  .masthead__menu-item--lg a:hover { color: #ffffff; }
+
+  h1, h2, h3, h4, h5, h6 { color: #dcfce7; }
+
+  blockquote {
+    background: rgba(74, 222, 128, 0.08);
+    border-left-color: rgba(74, 222, 128, 0.55);
+    color: #bbf7d0;
+  }
+
+  .archive__item-title a {
+    color: #4ade80;
+    &:hover { color: #86efac; }
+  }
+  .archive__item {
+    background: rgba(6, 78, 36, 0.55);
+    border-color: rgba(74, 222, 128, 0.10);
+    &:hover {
+      background: rgba(6, 78, 36, 0.78);
+      box-shadow: 0 8px 30px rgba(74, 222, 128, 0.14),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+  }
+
+  .page__content h2 { border-bottom-color: rgba(74, 222, 128, 0.22); }
+  hr                 { border-top-color: rgba(255, 255, 255, 0.12); }
+
+  .pagination a {
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.38);
+    &:hover { background: rgba(74, 222, 128, 0.11); }
+  }
+
+  .author__name  { color: #dcfce7; }
+  .author__bio   { color: #86efac; }
+  .author__urls a { color: #4ade80; &:hover { color: #86efac; } }
+  .author__urls .fas,
+  .author__urls .fab,
+  .author__urls .far { color: #4ade80; }
+
+  p > code, a > code, li > code, figcaption > code, td > code {
+    background: rgba(74, 222, 128, 0.11);
+    border-color: rgba(74, 222, 128, 0.22);
+    color: #86efac;
+  }
+
+  thead { background-color: rgba(74, 222, 128, 0.10); border-bottom-color: rgba(74, 222, 128, 0.25); }
+  table { border-color: rgba(74, 222, 128, 0.20); }
+  th    { border-right-color: rgba(74, 222, 128, 0.18); color: #dcfce7; }
+  td    { border-bottom-color: rgba(74, 222, 128, 0.14); border-right-color: rgba(74, 222, 128, 0.14); color: #bbf7d0; }
+
+  .archive__subtitle { color: #86efac; border-bottom-color: rgba(74, 222, 128, 0.22); }
+  .archive__item-excerpt { color: #86efac; }
+
+  .author__urls {
+    background: rgba(5, 46, 22, 0.92);
+    border-color: rgba(74, 222, 128, 0.18);
+    @include breakpoint($large) { background: transparent; border: 0; box-shadow: none; }
+    &:after { border-color: rgba(5, 46, 22, 0.92) transparent; }
+  }
+}
+
+
+/* ==========================================================================
+   PURPLE THEME — Light mode
+   ========================================================================== */
+
+html[data-color-theme="purple"] {
+
+  body {
+    background-color: #faf5ff;
+    background-image: linear-gradient(to top, rgba(109, 40, 217, 0.28) 0%, transparent 20em);
+  }
+
+  #main {
+    background: rgba(250, 245, 255, 0.88);
+    border-color: rgba(168, 85, 247, 0.18);
+    box-shadow:
+      0 8px 40px rgba(109, 40, 217, 0.09),
+      0 2px 8px rgba(109, 40, 217, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  }
+
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(109, 40, 217, 0.58) 0%,
+      rgba(76,  17, 160, 0.48) 100%
+    );
+    border-bottom-color: rgba(255, 255, 255, 0.22);
+  }
+
+  /* Hamburger dropdown button — match purple theme */
+  .greedy-nav__toggle-btn {
+    background: rgba(109, 40, 217, 0.80);
+  }
+
+  /* Sidebar card — purple-tinted shadow */
+  .sidebar {
+    @include breakpoint($large) {
+      box-shadow:
+        0 4px 24px rgba(109, 40, 217, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      border-color: rgba(168, 85, 247, 0.25);
+    }
+  }
+
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(109, 40, 217, 0.70) 0%,
+      rgba(76,  17, 160, 0.58) 100%
+    );
+    border-top-color: rgba(255, 255, 255, 0.14);
+
+    &::before {
+      background: linear-gradient(to bottom, transparent 0%, rgba(109, 40, 217, 0.36) 100%);
+    }
+  }
+
+  /* Links */
+  a {
+    color: #7c3aed;
+    &:hover   { color: #6d28d9; }
+    &:visited { color: #5b21b6; }
+  }
+
+  /* Keep masthead / footer links white */
+  .masthead__inner-wrap a,
+  .greedy-nav a {
+    color: rgba(255, 255, 255, 0.92);
+    &:hover { color: #ffffff; }
+  }
+  .masthead__menu-item--lg a,
+  .masthead__menu-item--lg a:visited,
+  .masthead__menu-item--lg a:hover { color: #ffffff; }
+
+  /* Headings */
+  h1, h2, h3 { color: #4c1d95; }
+
+  /* Blockquote */
+  blockquote {
+    background: rgba(124, 58, 237, 0.06);
+    border-left-color: rgba(124, 58, 237, 0.70);
+  }
+
+  /* Archive cards */
+  .archive__item-title a {
+    color: #7c3aed;
+    &:hover { color: #6d28d9; }
+  }
+  .archive__item:hover {
+    border-color: rgba(124, 58, 237, 0.32);
+    box-shadow:
+      0 8px 30px rgba(124, 58, 237, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  }
+
+  /* Section divider */
+  .page__content h2 {
+    border-bottom-color: rgba(124, 58, 237, 0.28);
+  }
+
+  /* Pagination */
+  .pagination a {
+    color: #7c3aed;
+    border-color: rgba(124, 58, 237, 0.38);
+    &:hover { background: rgba(124, 58, 237, 0.09); }
+  }
+
+  /* Sidebar */
+  .author__urls a {
+    color: #7c3aed;
+    &:hover { color: #6d28d9; }
+  }
+  .author__urls .fas,
+  .author__urls .fab,
+  .author__urls .far { color: #8b5cf6; }
+
+  /* Inline code */
+  p > code, a > code, li > code, figcaption > code, td > code {
+    background: rgba(124, 58, 237, 0.07);
+    border-color: rgba(124, 58, 237, 0.22);
+    color: #7c3aed;
+  }
+
+  /* Tables */
+  thead {
+    background-color: rgba(124, 58, 237, 0.10);
+    border-bottom-color: rgba(124, 58, 237, 0.28);
+  }
+  table { border-color: rgba(124, 58, 237, 0.22); }
+  th    { border-right-color: rgba(124, 58, 237, 0.18); }
+  td    { border-bottom-color: rgba(124, 58, 237, 0.14); border-right-color: rgba(124, 58, 237, 0.14); }
+
+  .archive__subtitle { border-bottom-color: rgba(124, 58, 237, 0.22); }
+}
+
+
+/* ==========================================================================
+   PURPLE THEME — Dark mode  (html[data-theme="dark"][data-color-theme="purple"])
+   ========================================================================== */
+
+html[data-theme="dark"][data-color-theme="purple"] {
+
+  body {
+    background-color: #1e0a3c !important;
+    background-image: linear-gradient(to top, rgba(76, 17, 160, 0.55) 0%, transparent 20em) !important;
+    color: #ede9fe;
+  }
+
+  .greedy-nav__toggle-btn { background: rgba(76, 17, 160, 0.90); }
+
+  #main {
+    background: rgba(30, 10, 60, 0.80);
+    border-color: rgba(196, 181, 253, 0.13);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.52),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .sidebar {
+    @include breakpoint($large) {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(76,  17, 160, 0.76) 0%,
+      rgba(46,  16, 101, 0.66) 100%
+    );
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(76,  17, 160, 0.88) 0%,
+      rgba(46,  16, 101, 0.78) 100%
+    );
+    border-top-color: rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.82);
+
+    &::before {
+      background: linear-gradient(to bottom, transparent 0%, rgba(76, 17, 160, 0.50) 100%);
+    }
+  }
+
+  a {
+    color: #c4b5fd;
+    &:hover   { color: #ddd6fe; }
+    &:visited { color: #ddd6fe; }
+  }
+
+  .masthead__menu-item--lg a,
+  .masthead__menu-item--lg a:visited,
+  .masthead__menu-item--lg a:hover { color: #ffffff; }
+
+  h1, h2, h3, h4, h5, h6 { color: #ede9fe; }
+
+  blockquote {
+    background: rgba(196, 181, 253, 0.08);
+    border-left-color: rgba(196, 181, 253, 0.55);
+    color: #ede9fe;
+  }
+
+  .archive__item-title a {
+    color: #c4b5fd;
+    &:hover { color: #ddd6fe; }
+  }
+  .archive__item {
+    background: rgba(76, 17, 160, 0.52);
+    border-color: rgba(196, 181, 253, 0.10);
+    &:hover {
+      background: rgba(76, 17, 160, 0.76);
+      box-shadow: 0 8px 30px rgba(196, 181, 253, 0.14),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+  }
+
+  .page__content h2 { border-bottom-color: rgba(196, 181, 253, 0.22); }
+  hr                 { border-top-color: rgba(255, 255, 255, 0.12); }
+
+  .pagination a {
+    color: #c4b5fd;
+    border-color: rgba(196, 181, 253, 0.38);
+    &:hover { background: rgba(196, 181, 253, 0.11); }
+  }
+
+  .author__name  { color: #ede9fe; }
+  .author__bio   { color: #c4b5fd; }
+  .author__urls a { color: #c4b5fd; &:hover { color: #ddd6fe; } }
+  .author__urls .fas,
+  .author__urls .fab,
+  .author__urls .far { color: #c4b5fd; }
+
+  p > code, a > code, li > code, figcaption > code, td > code {
+    background: rgba(196, 181, 253, 0.11);
+    border-color: rgba(196, 181, 253, 0.22);
+    color: #ddd6fe;
+  }
+
+  thead { background-color: rgba(196, 181, 253, 0.10); border-bottom-color: rgba(196, 181, 253, 0.25); }
+  table { border-color: rgba(196, 181, 253, 0.20); }
+  th    { border-right-color: rgba(196, 181, 253, 0.18); color: #ede9fe; }
+  td    { border-bottom-color: rgba(196, 181, 253, 0.14); border-right-color: rgba(196, 181, 253, 0.14); color: #ede9fe; }
+
+  .archive__subtitle { color: #c4b5fd; border-bottom-color: rgba(196, 181, 253, 0.22); }
+  .archive__item-excerpt { color: #c4b5fd; }
+
+  .author__urls {
+    background: rgba(30, 10, 60, 0.92);
+    border-color: rgba(196, 181, 253, 0.18);
+    @include breakpoint($large) { background: transparent; border: 0; box-shadow: none; }
+    &:after { border-color: rgba(30, 10, 60, 0.92) transparent; }
+  }
+}

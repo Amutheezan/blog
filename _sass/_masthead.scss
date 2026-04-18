@@ -1,0 +1,90 @@
+/* ==========================================================================
+   MASTHEAD — Liquid Glass
+   ========================================================================== */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 55, 120, 0.45) 0%,
+    rgba(55, 25, 110, 0.35) 100%
+  );
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  -webkit-animation: intro 0.3s both;
+          animation: intro 0.3s both;
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+
+  &__inner-wrap {
+    @include container;
+    @include clearfix;
+    /* flex row so masthead__controls stays in the same line as the nav */
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    background: transparent;
+    padding: 0.75em 1em;
+    font-family: $sans-serif-narrow;
+
+    @include breakpoint($x-large) {
+      max-width: $x-large;
+    }
+
+    nav {
+      background: transparent;
+      z-index: 10;
+    }
+
+    a {
+      background: transparent;
+      text-decoration: none;
+    }
+  }
+}
+
+/* Nav takes all available width; controls never shrink or wrap */
+.masthead__menu {
+  -webkit-box-flex: 1;
+  flex: 1 1 0%;
+  min-width: 0;
+
+  ul {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+}
+
+/* Always-visible toggle buttons — never enter the dropdown */
+.masthead__controls {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.masthead__menu-item {
+  background: transparent;
+  display: block;
+  list-style-type: none;
+  white-space: nowrap;
+
+  &--lg {
+    background: transparent;
+    padding-right: 2em;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,46 @@
+{% include base_path %}
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button id="greedy-nav-btn" class="greedy-nav__toggle-btn"><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="{{ base_path }}/">{{ site.title }}</a></li>
+          {% for link in site.data.navigation.main %}
+            {% if link.url contains 'http' %}
+              {% assign domain = '' %}
+              {% else %}
+              {% assign domain = base_path %}
+            {% endif %}
+            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+          <li class="masthead__menu-item masthead__menu-item--toggle" data-no-collapse>
+            <button
+              class="color-theme-toggle"
+              id="color-theme-toggle"
+              aria-label="Switch color theme"
+              title="Cycle color theme: Default → Green → Purple"
+            >
+              <span class="color-theme-swatch color-theme-swatch--default"></span>
+              <span class="color-theme-swatch color-theme-swatch--green"></span>
+              <span class="color-theme-swatch color-theme-swatch--purple"></span>
+            </button>
+          </li>
+          <li class="masthead__menu-item masthead__menu-item--toggle" data-no-collapse>
+            <button
+              class="dark-mode-toggle"
+              id="dark-mode-toggle"
+              aria-label="Toggle dark mode"
+              title="Toggle dark / light mode"
+            >
+              <i class="fas fa-sun  icon-sun"  aria-hidden="true"></i>
+              <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            </button>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
