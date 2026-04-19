@@ -166,12 +166,71 @@ body {
 }
 
 /* Hamburger toggle */
-.greedy-nav__toggle {
+.greedy-nav__toggle,
+.greedy-nav__toggle-btn {
   color: rgba(255, 255, 255, 0.90) !important;
+  background: transparent !important;
+  border: none !important;
 }
 .navicon,
 .navicon::before,
 .navicon::after { background: rgba(255, 255, 255, 0.88) !important; }
+
+/* ── Header toggle buttons — pill style matching portfolio ── */
+.dark-mode-toggle,
+.color-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.40);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: rgba(255, 255, 255, 0.90);
+  font-family: "Inter", -apple-system, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-user-select: none;
+  user-select: none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+  }
+  &:focus { outline: none; }
+  &:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.50); outline-offset: 2px; }
+}
+
+/* Sun/moon icon visibility */
+.dark-mode-toggle .icon-sun  { display: none; }
+.dark-mode-toggle .icon-moon { display: inline; }
+html[data-theme="dark"] .dark-mode-toggle .icon-sun  { display: inline; }
+html[data-theme="dark"] .dark-mode-toggle .icon-moon { display: none; }
+
+/* Colour swatches inside the header colour button */
+.color-theme-swatch {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+
+  &--default { background: #2563eb; }
+  &--green   { background: #059669; }
+  &--purple  { background: #7c3aed; }
+}
+
+/* Highlight the active swatch */
+html[data-color="blue"]   .color-theme-swatch--default { border-color: #fff; transform: scale(1.3); }
+html[data-color="green"]  .color-theme-swatch--green   { border-color: #fff; transform: scale(1.3); }
+html[data-color="purple"] .color-theme-swatch--purple  { border-color: #fff; transform: scale(1.3); }
 
 /* Hidden-links dropdown */
 .greedy-nav .hidden-links {
@@ -838,70 +897,61 @@ html[data-theme="dark"] {
 
 
 /* ============================================================
-   FLOATING CONTROLS — horizontal button bar
+   FLOATING CONTROLS — colour swatches + dark pill toggle
    ============================================================ */
 
 #site-controls {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 1.75rem;
+  right: 1.75rem;
   z-index: 9999;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+}
+
+#color-picker {
+  display: flex;
   gap: 0.4rem;
-  background: rgba(15, 25, 60, 0.80);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  padding: 0.35rem 0.55rem;
+  background: rgba(15, 28, 65, 0.62);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 0.6rem;
-  padding: 0.4rem 0.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.30);
+  border-radius: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
 }
 
-/* Shared style for all buttons inside the panel */
-#site-controls button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.38rem 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  border-radius: 0.4rem;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.90);
-  font-family: "Inter", -apple-system, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
+.color-swatch {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.30);
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.12s ease;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  user-select: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  padding: 0;
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.18);
-    transform: translateY(-1px);
-  }
-  &:active { transform: translateY(0); }
+  &[data-color="blue"]   { background: #2563eb; }
+  &[data-color="purple"] { background: #7c3aed; }
+  &[data-color="green"]  { background: #059669; }
+
+  &:hover { transform: scale(1.25); border-color: rgba(255, 255, 255, 0.70); }
   &:focus { outline: none; }
-  &:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.50); outline-offset: 2px; }
+  &:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.55); outline-offset: 2px; }
+
+  &.active {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45);
+    transform: scale(1.2);
+  }
 }
 
-/* Active colour button gets a bright border */
-#site-controls .color-swatch.active {
-  border-color: rgba(255, 255, 255, 0.70);
-  background: rgba(255, 255, 255, 0.18);
-}
-
-/* Reset old fixed positioning on dark-toggle (now lives in #site-controls) */
+/* Dark toggle stays as original pill */
 #dark-toggle {
   position: static !important;
   bottom: auto !important;
   right: auto !important;
-  border-radius: 0.4rem !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  box-shadow: none !important;
-  padding: 0.38rem 0.75rem !important;
 }
 
 

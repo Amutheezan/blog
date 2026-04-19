@@ -1,12 +1,14 @@
 <!-- Minimal Mistakes core JavaScript -->
 <script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
 
-<!-- ── Floating control panel ── -->
+<!-- ── Floating controls: colour picker + dark toggle ── -->
 <div id="site-controls">
-  <button class="color-swatch" data-color="blue"   aria-label="Blue theme">🔵 Blue</button>
-  <button class="color-swatch" data-color="purple" aria-label="Purple theme">🟣 Purple</button>
-  <button class="color-swatch" data-color="green"  aria-label="Green theme">🟢 Green</button>
-  <button id="dark-toggle" aria-label="Toggle dark / light mode">
+  <div id="color-picker" aria-label="Choose accent colour">
+    <button class="color-swatch" data-color="blue"   title="Blue theme"   aria-label="Blue theme"></button>
+    <button class="color-swatch" data-color="purple" title="Purple theme" aria-label="Purple theme"></button>
+    <button class="color-swatch" data-color="green"  title="Green theme"  aria-label="Green theme"></button>
+  </div>
+  <button id="dark-toggle" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
     <i class="fas fa-sun  icon-sun"  aria-hidden="true"></i>
     <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
     <span class="dark-toggle__label"></span>
@@ -16,21 +18,30 @@
 <script>
 (function () {
   /* ── Dark / light ── */
-  var btn = document.getElementById('dark-toggle');
-  var label = btn ? btn.querySelector('.dark-toggle__label') : null;
-
   function applyDark(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    if (label) { label.textContent = theme === 'dark' ? 'Light' : 'Dark'; }
     try { localStorage.setItem('theme', theme); } catch (e) {}
+    /* sync floating toggle label */
+    var label = document.querySelector('#dark-toggle .dark-toggle__label');
+    if (label) { label.textContent = theme === 'dark' ? 'Light' : 'Dark'; }
   }
 
-  if (btn) {
+  /* Floating toggle */
+  var floatBtn = document.getElementById('dark-toggle');
+  if (floatBtn) {
+    var lbl = floatBtn.querySelector('.dark-toggle__label');
     var cur = document.documentElement.getAttribute('data-theme') || 'light';
-    if (label) { label.textContent = cur === 'dark' ? 'Light' : 'Dark'; }
-    btn.addEventListener('click', function () {
-      var active = document.documentElement.getAttribute('data-theme') || 'light';
-      applyDark(active === 'dark' ? 'light' : 'dark');
+    if (lbl) { lbl.textContent = cur === 'dark' ? 'Light' : 'Dark'; }
+    floatBtn.addEventListener('click', function () {
+      applyDark(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  /* Header toggle */
+  var headerDark = document.getElementById('dark-mode-toggle');
+  if (headerDark) {
+    headerDark.addEventListener('click', function () {
+      applyDark(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
   }
 
@@ -46,20 +57,29 @@
   function applyColor(color) {
     document.documentElement.setAttribute('data-color', color);
     try { localStorage.setItem('color-theme', color); } catch (e) {}
+    /* sync floating swatches */
     document.querySelectorAll('.color-swatch').forEach(function (s) {
       s.classList.toggle('active', s.getAttribute('data-color') === color);
     });
   }
 
-  /* Activate saved/default swatch on load */
+  /* Floating swatches */
   var savedColor = document.documentElement.getAttribute('data-color') || 'blue';
   applyColor(savedColor);
-
-  document.querySelectorAll('.color-swatch').forEach(function (swatch) {
-    swatch.addEventListener('click', function () {
-      applyColor(this.getAttribute('data-color'));
-    });
+  document.querySelectorAll('.color-swatch').forEach(function (s) {
+    s.addEventListener('click', function () { applyColor(this.getAttribute('data-color')); });
   });
+
+  /* Header colour button — cycles blue → purple → green → blue */
+  var colorMap = ['blue', 'purple', 'green'];
+  var headerColor = document.getElementById('color-theme-toggle');
+  if (headerColor) {
+    headerColor.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-color') || 'blue';
+      var idx = colorMap.indexOf(current);
+      applyColor(colorMap[(idx + 1) % colorMap.length]);
+    });
+  }
 }());
 </script>
 
