@@ -165,13 +165,35 @@ body {
   color: #ffffff !important;
 }
 
-/* Hamburger toggle */
-.greedy-nav__toggle,
-.greedy-nav__toggle-btn {
-  color: rgba(255, 255, 255, 0.90) !important;
-  background: transparent !important;
-  border: none !important;
+/* ── Greedy nav: always show pills on desktop, hamburger on mobile ── */
+
+/* Hide hamburger on desktop */
+@media (min-width: 48em) {
+  .greedy-nav__toggle,
+  .greedy-nav__toggle-btn { display: none !important; }
+
+  .greedy-nav .visible-links {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .greedy-nav .hidden-links { display: none !important; }
 }
+
+/* Mobile hamburger styling */
+@media (max-width: 47.9em) {
+  .greedy-nav__toggle,
+  .greedy-nav__toggle-btn {
+    color: rgba(255, 255, 255, 0.90) !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 6px !important;
+    padding: 0.35rem 0.5rem !important;
+  }
+}
+
 .navicon,
 .navicon::before,
 .navicon::after { background: rgba(255, 255, 255, 0.88) !important; }
