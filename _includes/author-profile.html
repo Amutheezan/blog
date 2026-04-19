@@ -21,7 +21,17 @@
   </div>
 
   <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
+    <div class="author__nav-btns">
+      <a href="{{ '/blog/' | absolute_url }}" class="author__nav-btn">
+        <i class="fas fa-home" aria-hidden="true"></i> Home
+      </a>
+      <a href="{{ '/categories/' | relative_url }}" class="author__nav-btn">
+        <i class="fas fa-folder" aria-hidden="true"></i> Categories
+      </a>
+      <a href="{{ '/tags/' | relative_url }}" class="author__nav-btn">
+        <i class="fas fa-tags" aria-hidden="true"></i> Tags
+      </a>
+    </div>
     <ul class="author__urls social-icons">
       <!-- Font Awesome icons / Biographic information  -->
       {% if author.location %}
