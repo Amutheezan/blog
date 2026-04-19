@@ -37,13 +37,20 @@ $header-font-family   : $sans-serif;
 $border-radius        : 6px;
 $global-transition    : all 0.2s ease-in-out;
 
+/* Shrink base font so all rem/em values scale down proportionally */
+$doc-font-size: 14 !default;
+
 @import "minimal-mistakes/skins/default";
 @import "minimal-mistakes";
 
 
 /* ============================================================
-   GOOGLE FONTS — Inter loaded in head/custom.html
+   BASE FONT SIZE — scale everything down
    ============================================================ */
+
+html { font-size: 14px !important; }
+
+@media (min-width: 80em) { html { font-size: 15px !important; } }
 
 
 /* ============================================================
@@ -764,5 +771,297 @@ html[data-theme="dark"] {
   .home-section-title {
     color: #e2e8f0;
     border-image: linear-gradient(to right, #60a5fa, #c084fc, #4ade80) 1;
+  }
+}
+
+
+/* ============================================================
+   FLOATING CONTROLS — wrapper for dark toggle + colour picker
+   ============================================================ */
+
+#site-controls {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+}
+
+/* Colour swatch row */
+#color-picker {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.35rem 0.55rem;
+  background: rgba(15, 28, 65, 0.62);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+}
+
+.color-swatch {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.30);
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  padding: 0;
+
+  &[data-color="blue"]   { background: #2563eb; }
+  &[data-color="purple"] { background: #7c3aed; }
+  &[data-color="green"]  { background: #059669; }
+
+  &:hover { transform: scale(1.20); border-color: rgba(255, 255, 255, 0.70); }
+  &:focus { outline: none; }
+  &:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.55); outline-offset: 2px; }
+
+  &.active {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45);
+    transform: scale(1.15);
+  }
+}
+
+/* Move dark toggle out of its old fixed position (now inside #site-controls) */
+#dark-toggle {
+  position: static !important;
+  bottom: auto !important;
+  right: auto !important;
+}
+
+
+/* ============================================================
+   PURPLE COLOUR THEME  html[data-color="purple"]
+   ============================================================ */
+
+html[data-color="purple"] {
+
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(60, 15, 120, 0.52) 0%,
+      rgba(90, 10, 150, 0.42) 100%
+    ) !important;
+  }
+
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(60, 15, 120, 0.62) 0%,
+      rgba(90, 10, 150, 0.52) 100%
+    ) !important;
+  }
+
+  #dark-toggle {
+    background: linear-gradient(135deg, rgba(60, 15, 120, 0.75) 0%, rgba(90, 10, 150, 0.68) 100%);
+  }
+
+  #color-picker { background: rgba(40, 10, 90, 0.65); }
+
+  .home-hero__title {
+    background: linear-gradient(130deg, #6d28d9 0%, #a855f7 55%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .home-hero__badge {
+    color: #7c3aed;
+    background: rgba(124, 58, 237, 0.10);
+    border-color: rgba(124, 58, 237, 0.28);
+  }
+
+  .home-btn--primary {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.32);
+  }
+
+  .home-btn--outline {
+    color: #7c3aed !important;
+    border-color: rgba(124, 58, 237, 0.42);
+    &:hover { background: rgba(124, 58, 237, 0.07); color: #6d28d9 !important; }
+  }
+
+  .author__avatar img {
+    box-shadow:
+      0 6px 24px rgba(124, 58, 135, 0.20),
+      0 0 0 3px rgba(255, 255, 255, 0.70),
+      0 0 0 5px rgba(124, 58, 237, 0.28) !important;
+  }
+
+  .page__content a { color: #7c3aed; }
+  .page__content a:hover { color: #6d28d9; }
+  a { color: #7c3aed; }
+
+  .home-section-title {
+    border-image: linear-gradient(to right, #7c3aed, #a855f7, #c084fc) 1;
+  }
+}
+
+html[data-color="purple"][data-theme="dark"] {
+
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(40, 5, 100, 0.75) 0%,
+      rgba(70, 5, 130, 0.68) 100%
+    ) !important;
+  }
+
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(40, 5, 100, 0.88) 0%,
+      rgba(70, 5, 130, 0.78) 100%
+    ) !important;
+  }
+
+  .home-hero__badge {
+    color: #c084fc;
+    background: rgba(124, 58, 237, 0.18);
+    border-color: rgba(192, 132, 252, 0.32);
+  }
+
+  .home-hero__title {
+    background: linear-gradient(130deg, #c084fc 0%, #e879f9 55%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .home-btn--outline {
+    color: #c084fc !important;
+    border-color: rgba(192, 132, 252, 0.40);
+    &:hover { background: rgba(192, 132, 252, 0.10); color: #e879f9 !important; }
+  }
+
+  a { color: #c084fc; }
+  a:hover { color: #e879f9; }
+  .page__content a { color: #c084fc; }
+  .page__content a:hover { color: #e879f9; }
+
+  .home-section-title {
+    border-image: linear-gradient(to right, #c084fc, #e879f9, #a855f7) 1;
+  }
+}
+
+
+/* ============================================================
+   GREEN COLOUR THEME  html[data-color="green"]
+   ============================================================ */
+
+html[data-color="green"] {
+
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(5, 90, 55, 0.52) 0%,
+      rgba(15, 110, 65, 0.42) 100%
+    ) !important;
+  }
+
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(5, 90, 55, 0.62) 0%,
+      rgba(15, 110, 65, 0.52) 100%
+    ) !important;
+  }
+
+  #dark-toggle {
+    background: linear-gradient(135deg, rgba(5, 90, 55, 0.75) 0%, rgba(15, 110, 65, 0.68) 100%);
+  }
+
+  #color-picker { background: rgba(5, 60, 35, 0.65); }
+
+  .home-hero__title {
+    background: linear-gradient(130deg, #047857 0%, #059669 55%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .home-hero__badge {
+    color: #059669;
+    background: rgba(5, 150, 105, 0.10);
+    border-color: rgba(5, 150, 105, 0.28);
+  }
+
+  .home-btn--primary {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    box-shadow: 0 4px 16px rgba(5, 150, 105, 0.32);
+  }
+
+  .home-btn--outline {
+    color: #059669 !important;
+    border-color: rgba(5, 150, 105, 0.42);
+    &:hover { background: rgba(5, 150, 105, 0.07); color: #047857 !important; }
+  }
+
+  .author__avatar img {
+    box-shadow:
+      0 6px 24px rgba(5, 120, 75, 0.20),
+      0 0 0 3px rgba(255, 255, 255, 0.70),
+      0 0 0 5px rgba(5, 150, 105, 0.28) !important;
+  }
+
+  .page__content a { color: #059669; }
+  .page__content a:hover { color: #047857; }
+  a { color: #059669; }
+
+  .home-section-title {
+    border-image: linear-gradient(to right, #059669, #10b981, #34d399) 1;
+  }
+}
+
+html[data-color="green"][data-theme="dark"] {
+
+  .masthead {
+    background: linear-gradient(
+      135deg,
+      rgba(3, 60, 38, 0.75) 0%,
+      rgba(8, 80, 50, 0.68) 100%
+    ) !important;
+  }
+
+  .page__footer {
+    background: linear-gradient(
+      135deg,
+      rgba(3, 60, 38, 0.88) 0%,
+      rgba(8, 80, 50, 0.78) 100%
+    ) !important;
+  }
+
+  .home-hero__badge {
+    color: #34d399;
+    background: rgba(5, 150, 105, 0.18);
+    border-color: rgba(52, 211, 153, 0.32);
+  }
+
+  .home-hero__title {
+    background: linear-gradient(130deg, #34d399 0%, #6ee7b7 55%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .home-btn--outline {
+    color: #34d399 !important;
+    border-color: rgba(52, 211, 153, 0.40);
+    &:hover { background: rgba(52, 211, 153, 0.10); color: #6ee7b7 !important; }
+  }
+
+  a { color: #34d399; }
+  a:hover { color: #6ee7b7; }
+  .page__content a { color: #34d399; }
+  .page__content a:hover { color: #6ee7b7; }
+
+  .home-section-title {
+    border-image: linear-gradient(to right, #34d399, #6ee7b7, #10b981) 1;
   }
 }

@@ -1,49 +1,69 @@
 <!-- Minimal Mistakes core JavaScript -->
 <script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
 
-<!-- Dark mode floating toggle button (rendered into the DOM, styled via main.scss) -->
-<button id="dark-toggle" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
-  <i class="fas fa-sun  icon-sun"  aria-hidden="true"></i>
-  <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-  <span class="dark-toggle__label"></span>
-</button>
+<!-- ── Floating controls: dark-mode toggle + colour-theme picker ── -->
+<div id="site-controls">
+  <!-- Colour swatches -->
+  <div id="color-picker" aria-label="Choose accent colour">
+    <button class="color-swatch" data-color="blue"   title="Blue theme"   aria-label="Blue theme"></button>
+    <button class="color-swatch" data-color="purple" title="Purple theme" aria-label="Purple theme"></button>
+    <button class="color-swatch" data-color="green"  title="Green theme"  aria-label="Green theme"></button>
+  </div>
+  <!-- Dark / light toggle -->
+  <button id="dark-toggle" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
+    <i class="fas fa-sun  icon-sun"  aria-hidden="true"></i>
+    <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+    <span class="dark-toggle__label"></span>
+  </button>
+</div>
 
 <script>
-/* jshint esversion: 6 */
 (function () {
-  'use strict';
-
+  /* ── Dark / light ── */
   var btn = document.getElementById('dark-toggle');
-  if (!btn) { return; }
+  var label = btn ? btn.querySelector('.dark-toggle__label') : null;
 
-  var label = btn.querySelector('.dark-toggle__label');
-
-  /* Apply a theme and persist it */
-  function applyTheme(theme) {
+  function applyDark(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     if (label) { label.textContent = theme === 'dark' ? 'Light' : 'Dark'; }
     try { localStorage.setItem('theme', theme); } catch (e) {}
   }
 
-  /* Sync the button label to whatever theme is currently active */
-  var current = document.documentElement.getAttribute('data-theme') || 'light';
-  if (label) { label.textContent = current === 'dark' ? 'Light' : 'Dark'; }
+  if (btn) {
+    var cur = document.documentElement.getAttribute('data-theme') || 'light';
+    if (label) { label.textContent = cur === 'dark' ? 'Light' : 'Dark'; }
+    btn.addEventListener('click', function () {
+      var active = document.documentElement.getAttribute('data-theme') || 'light';
+      applyDark(active === 'dark' ? 'light' : 'dark');
+    });
+  }
 
-  /* Toggle on click */
-  btn.addEventListener('click', function () {
-    var active = document.documentElement.getAttribute('data-theme') || 'light';
-    applyTheme(active === 'dark' ? 'light' : 'dark');
-  });
-
-  /* React to OS-level preference changes (only when the user has not manually
-     overridden the theme, i.e. nothing saved in localStorage). */
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
       var saved = null;
       try { saved = localStorage.getItem('theme'); } catch (err) {}
-      if (!saved) { applyTheme(e.matches ? 'dark' : 'light'); }
+      if (!saved) { applyDark(e.matches ? 'dark' : 'light'); }
     });
   }
+
+  /* ── Accent colour ── */
+  function applyColor(color) {
+    document.documentElement.setAttribute('data-color', color);
+    try { localStorage.setItem('color-theme', color); } catch (e) {}
+    document.querySelectorAll('.color-swatch').forEach(function (s) {
+      s.classList.toggle('active', s.getAttribute('data-color') === color);
+    });
+  }
+
+  /* Activate saved/default swatch on load */
+  var savedColor = document.documentElement.getAttribute('data-color') || 'blue';
+  applyColor(savedColor);
+
+  document.querySelectorAll('.color-swatch').forEach(function (swatch) {
+    swatch.addEventListener('click', function () {
+      applyColor(this.getAttribute('data-color'));
+    });
+  });
 }());
 </script>
 
