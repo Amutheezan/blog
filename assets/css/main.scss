@@ -281,9 +281,35 @@ blockquote {
 }
 
 /* Archive / post list */
+.archive__item {
+  padding: 1.25rem 1.1rem;
+  margin-bottom: 1.0rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.50);
+}
+
+.archive__item-title {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
 .archive__item-title a { color: #1e293b; }
 .archive__item-title a:hover { color: #2563eb; }
-.archive__item-excerpt { color: #475569; }
+
+.page__meta {
+  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+}
+
+.archive__item-excerpt {
+  color: #475569;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-top: 0.4rem;
+}
 
 /* Pagination */
 .pagination li a {
@@ -520,7 +546,7 @@ html[data-theme="dark"] {
   }
   .archive__item-title a { color: #93c5fd !important; }
   .archive__item-title a:hover { color: #bfdbfe !important; }
-  .archive__item-excerpt { color: #94a3b8 !important; }
+  .archive__item-excerpt { color: #94a3b8 !important; font-size: 0.88rem; line-height: 1.65; }
   .archive__subtitle { color: #94a3b8; border-bottom-color: rgba(255, 255, 255, 0.12); }
 
   /* Meta / read-time */
