@@ -583,6 +583,42 @@ html[data-theme="dark"] {
   /* TOC */
   .toc__menu a { color: #94a3b8; }
   .toc__menu a:hover { color: #60a5fa; }
+
+  /* ── Dark mode + purple ── */
+  &[data-color="purple"] {
+    .masthead { background: linear-gradient(135deg, rgba(40, 5, 100, 0.75) 0%, rgba(70, 5, 130, 0.68) 100%) !important; }
+    .page__footer { background: linear-gradient(135deg, rgba(40, 5, 100, 0.88) 0%, rgba(70, 5, 130, 0.78) 100%) !important; }
+    #site-controls { background: rgba(40, 5, 100, 0.88); border-color: rgba(192, 132, 252, 0.30); }
+    a { color: #c084fc; }
+    a:hover { color: #e879f9; }
+    .page__content a { color: #c084fc; }
+    .page__content a:hover { color: #e879f9; }
+    .archive__item-title a { color: #c084fc !important; }
+    .archive__item-title a:hover { color: #e879f9 !important; }
+    .home-hero__badge { color: #c084fc; background: rgba(124, 58, 237, 0.18); border-color: rgba(192, 132, 252, 0.32); }
+    .home-hero__title { background: linear-gradient(130deg, #c084fc 0%, #e879f9 55%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .home-btn--outline { color: #c084fc !important; border-color: rgba(192, 132, 252, 0.40); }
+    .home-section-title { border-image: linear-gradient(to right, #c084fc, #e879f9, #a855f7) 1; }
+    .toc__menu a:hover { color: #c084fc; }
+  }
+
+  /* ── Dark mode + green ── */
+  &[data-color="green"] {
+    .masthead { background: linear-gradient(135deg, rgba(3, 60, 38, 0.75) 0%, rgba(8, 80, 50, 0.68) 100%) !important; }
+    .page__footer { background: linear-gradient(135deg, rgba(3, 60, 38, 0.88) 0%, rgba(8, 80, 50, 0.78) 100%) !important; }
+    #site-controls { background: rgba(3, 55, 35, 0.88); border-color: rgba(52, 211, 153, 0.30); }
+    a { color: #34d399; }
+    a:hover { color: #6ee7b7; }
+    .page__content a { color: #34d399; }
+    .page__content a:hover { color: #6ee7b7; }
+    .archive__item-title a { color: #34d399 !important; }
+    .archive__item-title a:hover { color: #6ee7b7 !important; }
+    .home-hero__badge { color: #34d399; background: rgba(5, 150, 105, 0.18); border-color: rgba(52, 211, 153, 0.32); }
+    .home-hero__title { background: linear-gradient(130deg, #34d399 0%, #6ee7b7 55%, #10b981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .home-btn--outline { color: #34d399 !important; border-color: rgba(52, 211, 153, 0.40); }
+    .home-section-title { border-image: linear-gradient(to right, #34d399, #6ee7b7, #10b981) 1; }
+    .toc__menu a:hover { color: #34d399; }
+  }
 }
 
 
@@ -802,62 +838,70 @@ html[data-theme="dark"] {
 
 
 /* ============================================================
-   FLOATING CONTROLS — wrapper for dark toggle + colour picker
+   FLOATING CONTROLS — horizontal button bar
    ============================================================ */
 
 #site-controls {
   position: fixed;
-  bottom: 1.75rem;
-  right: 1.75rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
   z-index: 9999;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.55rem;
-}
-
-/* Colour swatch row */
-#color-picker {
-  display: flex;
+  flex-direction: row;
+  align-items: center;
   gap: 0.4rem;
-  padding: 0.35rem 0.55rem;
-  background: rgba(15, 28, 65, 0.62);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 25, 60, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 2rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  border-radius: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.30);
 }
 
-.color-swatch {
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.30);
+/* Shared style for all buttons inside the panel */
+#site-controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.38rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 0.4rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.90);
+  font-family: "Inter", -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-  padding: 0;
+  transition: background 0.15s ease, transform 0.12s ease;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  user-select: none;
 
-  &[data-color="blue"]   { background: #2563eb; }
-  &[data-color="purple"] { background: #7c3aed; }
-  &[data-color="green"]  { background: #059669; }
-
-  &:hover { transform: scale(1.20); border-color: rgba(255, 255, 255, 0.70); }
-  &:focus { outline: none; }
-  &:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.55); outline-offset: 2px; }
-
-  &.active {
-    border-color: #ffffff;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45);
-    transform: scale(1.15);
+  &:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
   }
+  &:active { transform: translateY(0); }
+  &:focus { outline: none; }
+  &:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.50); outline-offset: 2px; }
 }
 
-/* Move dark toggle out of its old fixed position (now inside #site-controls) */
+/* Active colour button gets a bright border */
+#site-controls .color-swatch.active {
+  border-color: rgba(255, 255, 255, 0.70);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Reset old fixed positioning on dark-toggle (now lives in #site-controls) */
 #dark-toggle {
   position: static !important;
   bottom: auto !important;
   right: auto !important;
+  border-radius: 0.4rem !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
+  padding: 0.38rem 0.75rem !important;
 }
 
 
@@ -887,7 +931,7 @@ html[data-color="purple"] {
     background: linear-gradient(135deg, rgba(60, 15, 120, 0.75) 0%, rgba(90, 10, 150, 0.68) 100%);
   }
 
-  #color-picker { background: rgba(40, 10, 90, 0.65); }
+  #site-controls { background: rgba(40, 10, 90, 0.82); border-color: rgba(192, 132, 252, 0.25); }
 
   .home-hero__title {
     background: linear-gradient(130deg, #6d28d9 0%, #a855f7 55%, #7c3aed 100%);
@@ -1003,7 +1047,7 @@ html[data-color="green"] {
     background: linear-gradient(135deg, rgba(5, 90, 55, 0.75) 0%, rgba(15, 110, 65, 0.68) 100%);
   }
 
-  #color-picker { background: rgba(5, 60, 35, 0.65); }
+  #site-controls { background: rgba(5, 60, 35, 0.82); border-color: rgba(52, 211, 153, 0.25); }
 
   .home-hero__title {
     background: linear-gradient(130deg, #047857 0%, #059669 55%, #10b981 100%);

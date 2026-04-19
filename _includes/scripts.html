@@ -1,16 +1,12 @@
 <!-- Minimal Mistakes core JavaScript -->
 <script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
 
-<!-- ── Floating controls: dark-mode toggle + colour-theme picker ── -->
+<!-- ── Floating control panel ── -->
 <div id="site-controls">
-  <!-- Colour swatches -->
-  <div id="color-picker" aria-label="Choose accent colour">
-    <button class="color-swatch" data-color="blue"   title="Blue theme"   aria-label="Blue theme"></button>
-    <button class="color-swatch" data-color="purple" title="Purple theme" aria-label="Purple theme"></button>
-    <button class="color-swatch" data-color="green"  title="Green theme"  aria-label="Green theme"></button>
-  </div>
-  <!-- Dark / light toggle -->
-  <button id="dark-toggle" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
+  <button class="color-swatch" data-color="blue"   aria-label="Blue theme">🔵 Blue</button>
+  <button class="color-swatch" data-color="purple" aria-label="Purple theme">🟣 Purple</button>
+  <button class="color-swatch" data-color="green"  aria-label="Green theme">🟢 Green</button>
+  <button id="dark-toggle" aria-label="Toggle dark / light mode">
     <i class="fas fa-sun  icon-sun"  aria-hidden="true"></i>
     <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
     <span class="dark-toggle__label"></span>
