@@ -11,7 +11,7 @@ theme: minimal-mistakes-jekyll
 author:
   name: "Amutheezan Sivagnanam"
   avatar: "https://amutheezan.com/images/DP.png"
-  bio: "Postdoctoral Fellow at University of Houston. AI for Transportation Optimization & Reinforcement Learning."
+  bio: "Postdoctoral Fellow at University of Houston."
   location: "Houston, TX"
   links:
     - label: "Website"
