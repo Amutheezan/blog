@@ -2,6 +2,24 @@
    MIXINS
    ========================================================================== */
 
+/*
+   Breakpoint mixin — replaces the old Ruby Sass breakpoint vendor library.
+   Dart Sass compatible. Usage: @include breakpoint($large) { ... }
+   ========================================================================== */
+
+@mixin breakpoint($query, $no-query: false) {
+  @media (min-width: #{$query}) {
+    @content;
+  }
+}
+
+@mixin mq($query, $no-query: false) {
+  @include breakpoint($query, $no-query) {
+    @content;
+  }
+}
+
+
 %tab-focus {
   /* Default*/
   outline: thin dotted $warning-color;

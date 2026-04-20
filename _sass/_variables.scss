@@ -113,7 +113,7 @@ $masthead-link-white-color-hover  : mix(#fff, $white-color, 25%);
    Breakpoints
    ========================================================================== */
 
-@include breakpoint-set("to ems", true);
+// @include breakpoint-set("to ems", true); // removed: old Ruby Sass breakpoint library config
 /*
 $small                      : 400px;
 $medium                     : 500px;
