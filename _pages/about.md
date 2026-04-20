@@ -1,36 +1,67 @@
 ---
 permalink: /
-title: "Biography"
-excerpt: "About me"
+title: "Blog Posts"
+excerpt: "Amutheezan's Blog"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-Amutheezan Sivagnanam is currently a Postdoctoral Fellow at the University of Houston.
+<!-- ══════════════════════════════════════════════════════════════
+     HERO SECTION
+     ══════════════════════════════════════════════════════════════ -->
+<div class="home-hero">
+  <p class="home-hero__badge">
+    <i class="fas fa-university" aria-hidden="true"></i>
+    Postdoc · University of Houston
+  </p>
 
-He earned his Ph.D. in Informatics from The Pennsylvania State University in Summer 2025, where he was a member of the [Applied Artificial Intelligence Lab](https://aronlaszka.com/). His doctoral research focused on applying artificial intelligence to solve combinatorial optimization problems in transportation domains. He also earned a Master’s degree in Computer Science from the University of Houston in Summer 2022. He completed his Bachelor’s degree in Computer Science and Engineering at the University of Moratuwa, Sri Lanka, in 2017.
+  <h1 class="home-hero__title">Technical Writing on&nbsp;AI&nbsp;&amp;&nbsp;Systems</h1>
 
-Before his doctoral studies, he gained industry experience as a Software Engineering Intern at WSO2 Lanka (Pvt) Ltd, working with the Data Analytics Team from July to December 2016. He later worked as a Software Engineer at MillenniumIT Software (Pvt) Ltd, contributing to the Post-Trade Team from January 2018 to July 2019.
+  <p class="home-hero__tagline">
+    Exploring reinforcement learning, transportation optimization, and cyber-physical
+    systems — from research insights to engineering deep-dives.
+  </p>
 
-
-**Research Interests**
-
-<div class="interest-tags">
-  <span class="interest-tag interest-tag--blue">
-    <i class="fas fa-brain"></i> Reinforcement Learning
-  </span>
-  <span class="interest-tag interest-tag--purple">
-    <i class="fas fa-project-diagram"></i> Combinatorial Optimization
-  </span>
-  <span class="interest-tag interest-tag--teal">
-    <i class="fas fa-users-cog"></i> Multi-Agent Systems
-  </span>
-  <span class="interest-tag interest-tag--orange">
-    <i class="fas fa-microchip"></i> Cyber-Physical Systems
-  </span>
-  <span class="interest-tag interest-tag--green">
-    <i class="fas fa-chart-line"></i> Operational Research
-  </span>
+  <div class="home-hero__ctas">
+    <a href="https://amutheezan.com/publications/" class="home-btn home-btn--primary">
+      <i class="fas fa-file-alt" aria-hidden="true"></i>
+    </a>
+    <a href="https://amutheezan.com" class="home-btn home-btn--outline">
+      <i class="fas fa-home" aria-hidden="true"></i> 
+    </a>
+    <a href="https://amutheezan.com/cv" class="home-btn home-btn--outline">
+      <i class="fas fa-file-alt" aria-hidden="true"></i> CV
+    </a>
+  </div>
 </div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     RESEARCH INTEREST CHIPS
+     ══════════════════════════════════════════════════════════════ -->
+<ul class="home-chips" aria-label="Research interests">
+  <li class="home-chip home-chip--blue">
+    <i class="fas fa-brain" aria-hidden="true"></i> Reinforcement Learning
+  </li>
+  <li class="home-chip home-chip--purple">
+    <i class="fas fa-cogs" aria-hidden="true"></i> Combinatorial Optimization
+  </li>
+  <li class="home-chip home-chip--blue">
+    <i class="fas fa-robot" aria-hidden="true"></i> Multi-Agent Systems
+  </li>
+  <li class="home-chip home-chip--purple">
+    <i class="fas fa-microchip" aria-hidden="true"></i> Cyber-Physical Systems
+  </li>
+  <li class="home-chip home-chip--green">
+    <i class="fas fa-chart-line" aria-hidden="true"></i> Operational Research
+  </li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════════════
+     RECENT POSTS HEADING  (the MM `home` layout renders the
+     post list automatically below this content block)
+     ══════════════════════════════════════════════════════════════ -->
+<h2 class="home-section-title">
+  <i class="fas fa-pen-nib" aria-hidden="true"></i> Recent Posts
+</h2>

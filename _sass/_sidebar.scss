@@ -24,7 +24,7 @@
     -webkit-backdrop-filter: blur(20px) saturate(150%);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 18px;
-    padding: 0.6rem 0.75rem;
+    padding: 1rem 0.75rem;
     box-shadow:
       0 4px 24px rgba(31, 38, 135, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.75);
@@ -79,20 +79,20 @@
    ========================================================================== */
 
 .author__avatar {
-  display: block;
-  text-align: center;
-  margin-bottom: 0.4rem;
+  display: table-cell;
+  vertical-align: top;
+  width: 36px;
+  // set width only, for non-square avatars
+  // height: 36px;
 
   @include breakpoint($large) {
     display: block;
     width: auto;
     height: auto;
-    text-align: center;
   }
 
   img {
-    width: 80%;
-    max-width: 140px;
+    max-width: 175px;
     border-radius: 50%;
     box-shadow:
       0 6px 24px rgba(31, 38, 135, 0.2),
@@ -100,8 +100,6 @@
       0 0 0 5px rgba(37, 99, 235, 0.25);
 
     @include breakpoint($large) {
-      width: 85%;
-      max-width: 150px;
       padding: 4px;
       border: 2px solid rgba(255, 255, 255, 0.7);
     }
@@ -109,19 +107,17 @@
 }
 
 .author__content {
-  display: block;
+  display: table-cell;
   vertical-align: top;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 15px;
+  padding-right: 25px;
   line-height: 1;
-  text-align: center;
 
   @include breakpoint($large) {
     display: block;
     width: 100%;
     padding-left: 0;
     padding-right: 0;
-    text-align: center;
   }
 }
 
@@ -129,8 +125,8 @@
   margin: 0;
 
   @include breakpoint($large) {
-    margin-top: 4px;
-    margin-bottom: 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }
 .sidebar .author__name {
@@ -142,17 +138,18 @@
   margin: 0;
 
   @include breakpoint($large) {
-    margin-top: 2px;
-    margin-bottom: 6px;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
 }
 
 .author__urls-wrapper {
   position: relative;
-  display: block;
+  display: table-cell;
   vertical-align: middle;
   font-family: $sans-serif;
   z-index: 10;
+  position: relative;
   cursor: pointer;
 
   li:last-child {

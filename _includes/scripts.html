@@ -1,48 +1,47 @@
-<!-- Minimal Mistakes core JavaScript -->
-<script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+<script src="{{ base_path }}/assets/js/main.min.js"></script>
 
-
+<!-- Dark / Light mode toggle -->
 <script>
 (function () {
-  /* ── Dark / light ── */
-  function applyDark(theme) {
+  var toggle = document.getElementById('dark-mode-toggle');
+  if (!toggle) return;
+
+  function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    try { localStorage.setItem('theme', theme); } catch (e) {}
+    try { localStorage.setItem('theme', theme); } catch(e) {}
   }
 
-  var headerDark = document.getElementById('dark-mode-toggle');
-  if (headerDark) {
-    headerDark.addEventListener('click', function () {
-      applyDark(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
+  toggle.addEventListener('click', function () {
+    var current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+})();
+</script>
+
+<!-- Color theme switcher (default → green → purple → default) -->
+<script>
+(function () {
+  var colorToggle = document.getElementById('color-theme-toggle');
+  if (!colorToggle) return;
+
+  var themes = ['default', 'green', 'purple'];
+
+  function applyColorTheme(theme) {
+    if (theme === 'default') {
+      document.documentElement.removeAttribute('data-color-theme');
+    } else {
+      document.documentElement.setAttribute('data-color-theme', theme);
+    }
+    try { localStorage.setItem('color-theme', theme); } catch(e) {}
   }
 
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-      var saved = null;
-      try { saved = localStorage.getItem('theme'); } catch (err) {}
-      if (!saved) { applyDark(e.matches ? 'dark' : 'light'); }
-    });
-  }
-
-  /* ── Accent colour ── */
-  function applyColor(color) {
-    document.documentElement.setAttribute('data-color', color);
-    try { localStorage.setItem('color-theme', color); } catch (e) {}
-  }
-
-  applyColor(document.documentElement.getAttribute('data-color') || 'blue');
-
-  /* Header colour button — cycles blue → purple → green → blue */
-  var colorMap = ['blue', 'purple', 'green'];
-  var headerColor = document.getElementById('color-theme-toggle');
-  if (headerColor) {
-    headerColor.addEventListener('click', function () {
-      var current = document.documentElement.getAttribute('data-color') || 'blue';
-      applyColor(colorMap[(colorMap.indexOf(current) + 1) % colorMap.length]);
-    });
-  }
-}());
+  colorToggle.addEventListener('click', function () {
+    var current = document.documentElement.getAttribute('data-color-theme') || 'default';
+    var idx = themes.indexOf(current);
+    var next = themes[(idx + 1) % themes.length];
+    applyColorTheme(next);
+  });
+})();
 </script>
 
 {% include analytics.html %}
