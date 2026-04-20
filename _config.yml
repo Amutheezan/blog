@@ -5,8 +5,7 @@ title_separator: "-"
 name: "Amutheezan"
 description: "Postdoctoral Fellow at the University of Houston | AI for Transportation Optimization | Reinforcement Learning"
 
-# ✅ FIXED
-url: "https://amutheezan.github.io"
+url: "https://amutheezan.com"
 baseurl: "/blog"
 repository: "amutheezan/blog"
 
