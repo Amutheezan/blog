@@ -374,7 +374,7 @@ html[data-color="purple"] {
 
 /* Author avatar ring */
 .author__avatar img {
-  max-width: 100px;
+  max-width: 120px;
   border-radius: 50% !important;
   box-shadow:
     0 6px 24px rgba(31, 38, 135, 0.20),
@@ -391,8 +391,12 @@ html[data-color="purple"] {
 .author__urls .fas,
 .author__urls .fab,
 .author__urls .far { color: #2563eb; }
-.author__content { padding: 0.25rem 0; }
-.sidebar .author__avatar { margin-bottom: 0.5rem; }
+.author__content { padding: 0.15rem 0 0.25rem; }
+.sidebar .author__avatar { margin-bottom: 0.35rem; }
+.author__urls-wrapper { margin-top: 0.25rem !important; }
+.author__urls-wrapper .author__urls { margin: 0; padding: 0; }
+.author__urls-wrapper .author__urls li { padding: 2px 0; }
+.sidebar p, .sidebar h3 { margin-top: 0; margin-bottom: 0.15rem; }
 
 
 /* ============================================================
