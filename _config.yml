@@ -9,9 +9,9 @@ theme: minimal-mistakes-jekyll
 
 # Author
 author:
-  name: "Amutheezan Sivagnanam"
+  name: "Amutheezan"
   avatar: "https://amutheezan.com/images/DP.png"
-  bio: "Postdoctoral Fellow at University of Houston."
+  bio: "Postdoctoral Fellow"
   location: "Houston, TX"
   links:
     - label: "Website"
