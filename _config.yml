@@ -1,129 +1,78 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve`. If you change this file, please restart the server process.
-
 # Site Settings
-locale                   : "en-US"
-title                    : "Home"
-title_separator          : "-"
-name                     : &name "Amutheezan"
-description              : &description "Postdoctoral Fellow at the University of Houston | AI for Transportation Optimization | Reinforcement Learning"
-url                      : https://amutheezan.com/blog # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "academicpages/academicpages.github.io"
-teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
-breadcrumbs              : true # true, false (default)
-words_per_minute         : 160
-future                   : true
-read_more                : "enabled" # if enabled, adds "Read more" links to excerpts
-talkmap_link             : false #change to true to add link to talkmap on talks page
+locale: "en-US"
+title: "Home"
+title_separator: "-"
+name: "Amutheezan"
+description: "Postdoctoral Fellow at the University of Houston | AI for Transportation Optimization | Reinforcement Learning"
+
+# ✅ FIXED
+url: "https://amutheezan.github.io"
+baseurl: "/blog"
+repository: "amutheezan/blog"
+
+breadcrumbs: true
+words_per_minute: 160
+future: true
+read_more: "enabled"
+talkmap_link: false
+
+# Comments
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
-  disqus:
-    shortname            :
-  discourse:
-    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
-  facebook:
-    appid                :
-    num_posts            : # 5 (default)
-    colorscheme          : "dark"
-staticman:
-  allowedFields          : ['name', 'email', 'url', 'message']
-  branch                 : "gh-pages" # "master", "gh-pages"
-  commitMessage          : "New comment."
-  filename               : comment-{@timestamp}
-  format                 : "yml"
-  moderation             : true
-  path                   : "_data/comments/{options.slug}"
-  requiredFields         : ['name', 'email', 'message']
-  transforms:
-    email                : "md5"
-  generatedFields:
-    date:
-      type               : "date"
-      options:
-        format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+  provider:
+
+# Atom feed
 atom_feed:
-  path                   : # blank (default) uses feed.xml
+  path:
 
-# SEO Related
-google_site_verification :
-bing_site_verification   :
-alexa_site_verification  :
-yandex_site_verification :
+# SEO
+google_site_verification:
+bing_site_verification:
+alexa_site_verification:
+yandex_site_verification:
 
-# Social Sharing
+# Social
 twitter:
-  username               : &twitter
+  username:
 facebook:
-  username               :
-  app_id                 :
-  publisher              :
-og_image                 :  # Open Graph/Twitter default site image
-# For specifying social profiles
-# - https://developers.google.com/structured-data/customize/social-profiles
-social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
+  username:
+  app_id:
+  publisher:
+og_image:
 
+social:
+  type:
+  name:
+  links:
 
 # Analytics
 analytics:
-  provider               :  "google-universal" # false (default), "google", "google-universal", "custom"
+  provider: "google-universal"
   google:
-    tracking_id          :
+    tracking_id:
 
-
-# Site Author
+# Author
 author:
-  name             : "Amutheezan"
-  avatar           : "DP.png"
-  bio              : "Postdoctoral Fellow"
-  location         : "Houston, TX"
-  employer         : University of Houston
-  pubmed           :  
-  googlescholar    : "https://scholar.google.com/citations?user=1m6U1cQAAAAJ&hl=en"
-  email            : "asivagnanam@uh.edu"
-  researchgate     : "https://www.researchgate.net/profile/Amutheezan-Sivagnanam"
-  uri              :
-  bitbucket        :
-  bluesky          :
-  codepen          :
-  dribbble         :
-  flickr           :
-  facebook         :
-  foursquare       :
-  github           : "amutheezan"
-  google_plus      :
-  keybase          :
-  instagram        :
-  impactstory      :
-  lastfm           :
-  linkedin         : "amutheezansivagnanam"
-  orcid            : "https://orcid.org/0000-0002-4295-529X"
-  pinterest        :
-  soundcloud       :
-  stackoverflow    : "4859531/amutheezan"
-  steam            :
-  tumblr           :
-  twitter          : "amux93"
-  vine             :
-  weibo            :
-  x                : "amux93"
-  xing             :
-  youtube          :
-  wikipedia        :
-
+  name: "Amutheezan"
+  avatar: "DP.png"
+  bio: "Postdoctoral Fellow"
+  location: "Houston, TX"
+  employer: "University of Houston"
+  googlescholar: "https://scholar.google.com/citations?user=1m6U1cQAAAAJ&hl=en"
+  email: "asivagnanam@uh.edu"
+  researchgate: "https://www.researchgate.net/profile/Amutheezan-Sivagnanam"
+  github: "amutheezan"
+  linkedin: "amutheezansivagnanam"
+  orcid: "https://orcid.org/0000-0002-4295-529X"
+  stackoverflow: "4859531/amutheezan"
+  twitter: "amux93"
+  x: "amux93"
 
 # Reading Files
 include:
   - .htaccess
   - _pages
   - files
+
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -148,12 +97,13 @@ exclude:
   - package.json
   - tmp
   - vendor
+
 keep_files:
   - .git
   - .svn
+
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-
 
 # Conversion
 markdown: kramdown
@@ -161,7 +111,6 @@ highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
-
 
 # Markdown Processing
 kramdown:
@@ -173,7 +122,6 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
-
 
 # Collections
 collections:
@@ -190,10 +138,8 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-
 # Defaults
 defaults:
-  # _posts
   - scope:
       path: ""
       type: tags
@@ -204,7 +150,7 @@ defaults:
       comments: true
       share: true
       related: true
-  # _pages
+
   - scope:
       path: ""
       type: categories
@@ -215,63 +161,24 @@ defaults:
       comments: true
       share: true
       related: true
-  # _publications
-#  - scope:
-#      path: ""
-#      type: publications
-#    values:
-#      layout: single
-#      author_profile: true
-#      share: true
-#      comments: true
-#  # _workshops
-#  - scope:
-#      path: ""
-#      type: workshops
-#    values:
-#      layout: single
-#      author_profile: true
-#      share: true
-#      comments: true
-#  # _portfolio
-#  - scope:
-#      path: ""
-#      type: projects
-#    values:
-#      layout: single
-#      author_profile: true
-#      share: true
-#      comment: true
-#  # _talks
-#  - scope:
-#      path: ""
-#      type: talks
-#    values:
-#      layout: talk
-#      author_profile: true
-#      share: true
 
-# Sass/SCSS
+# Sass
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
 
-
-# Outputting
+# Output
 permalink: /:categories/:title/
-# paginate: 5 # amount of posts to show
-# paginate_path: /page:num/
-timezone: America/New_York # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: America/New_York
 
-
-# Plugins
+# Plugins (GitHub Pages safe)
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jekyll-redirect-from
-# mimic GitHub Pages with --safe
+
 whitelist:
   - jekyll-paginate
   - jekyll-sitemap
@@ -279,38 +186,16 @@ whitelist:
   - jekyll-feed
   - jemoji
 
-
 # Archives
-#  Type
-#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
-#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
-#  Path (examples)
-#  - Archive page should exist at path when using Liquid method or you can
-#    expect broken links (especially with breadcrumbs enabled)
-#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
-#  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
-#  - <base_path/my-awesome-category/index.html ~> path: /
 category_archive:
   type: liquid
   path: /categories/
+
 tag_archive:
   type: liquid
   path: /tags/
-# https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
-
 
 # HTML Compression
-# - http://jch.penibelst.de/
 compress_html:
   clippings: all
   ignore:
