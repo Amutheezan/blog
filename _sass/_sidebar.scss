@@ -79,20 +79,19 @@
    ========================================================================== */
 
 .author__avatar {
-  display: table-cell;
-  vertical-align: top;
-  width: 36px;
-  // set width only, for non-square avatars
-  // height: 36px;
+  display: block;
+  text-align: center;
+  margin-bottom: 0.4rem;
 
   @include breakpoint($large) {
     display: block;
     width: auto;
     height: auto;
+    text-align: center;
   }
 
   img {
-    max-width: 120px;
+    max-width: 90px;
     border-radius: 50%;
     box-shadow:
       0 6px 24px rgba(31, 38, 135, 0.2),
@@ -100,6 +99,7 @@
       0 0 0 5px rgba(37, 99, 235, 0.25);
 
     @include breakpoint($large) {
+      max-width: 100px;
       padding: 4px;
       border: 2px solid rgba(255, 255, 255, 0.7);
     }
@@ -107,17 +107,19 @@
 }
 
 .author__content {
-  display: table-cell;
+  display: block;
   vertical-align: top;
-  padding-left: 15px;
-  padding-right: 25px;
+  padding-left: 0;
+  padding-right: 0;
   line-height: 1;
+  text-align: center;
 
   @include breakpoint($large) {
     display: block;
     width: 100%;
     padding-left: 0;
     padding-right: 0;
+    text-align: center;
   }
 }
 
@@ -126,7 +128,7 @@
 
   @include breakpoint($large) {
     margin-top: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 }
 .sidebar .author__name {
@@ -138,18 +140,17 @@
   margin: 0;
 
   @include breakpoint($large) {
-    margin-top: 4px;
-    margin-bottom: 8px;
+    margin-top: 2px;
+    margin-bottom: 6px;
   }
 }
 
 .author__urls-wrapper {
   position: relative;
-  display: table-cell;
+  display: block;
   vertical-align: middle;
   font-family: $sans-serif;
   z-index: 10;
-  position: relative;
   cursor: pointer;
 
   li:last-child {
