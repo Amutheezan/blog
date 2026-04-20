@@ -91,7 +91,8 @@
   }
 
   img {
-    max-width: 90px;
+    width: 80%;
+    max-width: 140px;
     border-radius: 50%;
     box-shadow:
       0 6px 24px rgba(31, 38, 135, 0.2),
@@ -99,7 +100,8 @@
       0 0 0 5px rgba(37, 99, 235, 0.25);
 
     @include breakpoint($large) {
-      max-width: 100px;
+      width: 85%;
+      max-width: 150px;
       padding: 4px;
       border: 2px solid rgba(255, 255, 255, 0.7);
     }
