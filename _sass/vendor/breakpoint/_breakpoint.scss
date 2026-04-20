@@ -1,0 +1,27 @@
+//////////////////////////////
+// Minimal Breakpoint Mixin
+// Replaces the Ruby Sass breakpoint library with a simple
+// Dart Sass–compatible implementation.
+// Usage: @include breakpoint($large) { ... }
+// Emits:  @media (min-width: $large) { ... }
+//////////////////////////////
+
+@mixin breakpoint($query, $no-query: false) {
+  @media (min-width: #{$query}) {
+    @content;
+  }
+}
+
+@mixin mq($query, $no-query: false) {
+  @include breakpoint($query, $no-query) {
+    @content;
+  }
+}
+
+// Stub — no-op. The old Ruby Sass breakpoint library had a
+// breakpoint-set mixin to configure options like "to ems".
+// Dart Sass doesn't need it; this stub prevents build errors
+// if any leftover calls exist.
+@mixin breakpoint-set($setting, $value) {
+  // no-op
+}

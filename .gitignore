@@ -4,9 +4,6 @@ _site/
 .jekyll-metadata
 Gemfile.lock
 vendor/
+!_sass/vendor/
+!_sass/vendor/**
 .bundle/
-
-.idea/
-.idea/**
-.idea/**/*
-
