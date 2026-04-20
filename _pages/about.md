@@ -24,39 +24,28 @@ redirect_from:
     systems — from research insights to engineering deep-dives.
   </p>
 
-  <div class="home-hero__ctas">
-    <a href="https://amutheezan.com/publications/" class="home-btn home-btn--primary">
-      <i class="fas fa-file-alt" aria-hidden="true"></i>
-    </a>
-    <a href="https://amutheezan.com" class="home-btn home-btn--outline">
-      <i class="fas fa-home" aria-hidden="true"></i> 
-    </a>
-    <a href="https://amutheezan.com/cv" class="home-btn home-btn--outline">
-      <i class="fas fa-file-alt" aria-hidden="true"></i> CV
-    </a>
-  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
      RESEARCH INTEREST CHIPS
      ══════════════════════════════════════════════════════════════ -->
-<ul class="home-chips" aria-label="Research interests">
-  <li class="home-chip home-chip--blue">
+<div class="interest-tags">
+  <span class="interest-tag interest-tag--blue">
     <i class="fas fa-brain" aria-hidden="true"></i> Reinforcement Learning
-  </li>
-  <li class="home-chip home-chip--purple">
+  </span>
+  <span class="interest-tag interest-tag--purple">
     <i class="fas fa-cogs" aria-hidden="true"></i> Combinatorial Optimization
-  </li>
-  <li class="home-chip home-chip--blue">
+  </span>
+  <span class="interest-tag interest-tag--blue">
     <i class="fas fa-robot" aria-hidden="true"></i> Multi-Agent Systems
-  </li>
-  <li class="home-chip home-chip--purple">
+  </span>
+  <span class="interest-tag interest-tag--teal">
     <i class="fas fa-microchip" aria-hidden="true"></i> Cyber-Physical Systems
-  </li>
-  <li class="home-chip home-chip--green">
+  </span>
+  <span class="interest-tag interest-tag--green">
     <i class="fas fa-chart-line" aria-hidden="true"></i> Operational Research
-  </li>
-</ul>
+  </span>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════════
      RECENT POSTS HEADING  (the MM `home` layout renders the
